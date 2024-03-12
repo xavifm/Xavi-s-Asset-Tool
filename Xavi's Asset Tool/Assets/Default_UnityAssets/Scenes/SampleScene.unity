@@ -1803,6 +1803,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 2113216377}
   CreatureAnimator: {fileID: 0}
+  Velocity: 2
+  ResetSpeed: 2
+  PlayerCamera: {fileID: 502998240}
+  MouseSensitivity: 0.2
+  CamerAngleLimits: 0.2
 --- !u!1 &2130700853
 GameObject:
   m_ObjectHideFlags: 0

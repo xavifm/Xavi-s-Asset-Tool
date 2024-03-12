@@ -10,5 +10,6 @@ public class Player : CreatureEntity
     {
         base.VirtualUpdate();
         MovementLogic.MovementLogic();
+        MovementLogic.RotationLogic();
     }
 }
