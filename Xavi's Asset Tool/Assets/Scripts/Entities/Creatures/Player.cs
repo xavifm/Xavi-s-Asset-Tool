@@ -5,4 +5,11 @@ using UnityEngine;
 public class Player : CreatureEntity
 {
     [SerializeField] private Movement MovementLogic;
+
+    public override void VirtualUpdate()
+    {
+        base.VirtualUpdate();
+        MovementLogic.MovementLogic();
+        MovementLogic.RotationLogic();
+    }
 }

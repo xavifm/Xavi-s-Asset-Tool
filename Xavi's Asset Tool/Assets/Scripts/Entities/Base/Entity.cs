@@ -7,4 +7,19 @@ public class Entity : MonoBehaviour
     public enum EntityType { CREATURE_PLAYER, CREATURE_NPC, WORLD_PROP, WEAPON }
 
     public EntityType TypeOfEntity;
+
+    void Start()
+    {
+
+    }
+
+    void Update()
+    {
+        VirtualUpdate();
+    }
+
+    public virtual void VirtualUpdate()
+    {
+
+    }
 }

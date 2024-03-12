@@ -1730,7 +1730,7 @@ GameObject:
   - component: {fileID: 2113216376}
   - component: {fileID: 2113216377}
   - component: {fileID: 2113216379}
-  - component: {fileID: 2113216378}
+  - component: {fileID: 2113216380}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1773,19 +1773,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 2
---- !u!114 &2113216378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2113216375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16fdef72bc78df54c9cec74c4656d955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EntityRb: {fileID: 2113216377}
 --- !u!114 &2113216379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1801,7 +1788,26 @@ MonoBehaviour:
   TypeOfEntity: 0
   Name: 
   life: 100
-  MovementLogic: {fileID: 2113216378}
+  MovementLogic: {fileID: 2113216380}
+--- !u!114 &2113216380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113216375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6baab8c82f3049544af644d1c6ac8b7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityRb: {fileID: 2113216377}
+  CreatureAnimator: {fileID: 0}
+  Velocity: 2
+  ResetSpeed: 2
+  PlayerCamera: {fileID: 502998240}
+  MouseSensitivity: 0.2
+  CamerAngleLimits: 0.2
 --- !u!1 &2130700853
 GameObject:
   m_ObjectHideFlags: 0

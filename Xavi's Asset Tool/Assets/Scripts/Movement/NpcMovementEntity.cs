@@ -2,7 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NpcMovementEntityFramework : MonoBehaviour
+public class NpcMovementEntity : Movement
 {
-    public Movement MovementLogic { get; set; }
+    void Start()
+    {
+        
+    }
+
+    void Update()
+    {
+        
+    }
 }
