@@ -21,7 +21,8 @@ public class Movement : MonoBehaviour
 
     public virtual void MovementLogic()
     {
-        Vector3 currentVelocity = Vector3.zero;
+        Vector3 resetVector = new Vector3(0, EntityRb.velocity.y, 0);
+        EntityRb.velocity = Vector3.Lerp(EntityRb.velocity, resetVector, Time.deltaTime * ResetSpeed);
     }
 
     public virtual void RotationLogic()

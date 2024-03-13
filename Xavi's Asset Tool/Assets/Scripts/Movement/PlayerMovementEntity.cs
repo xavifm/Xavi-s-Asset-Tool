@@ -6,8 +6,10 @@ public class PlayerMovementEntityFramework : Movement
 {
     [SerializeField] Camera PlayerCamera;
     [SerializeField] float MouseSensitivity;
-    [SerializeField] float CamerAngleLimits;
+    [SerializeField] float CameraAngleLimits;
+    [SerializeField] float SprintMultiplier;
     [SerializeField] string FloorTag;
+    [SerializeField] KeyCode SprintKey;
 
     public override void MovementStateMachine()
     {
@@ -18,11 +20,18 @@ public class PlayerMovementEntityFramework : Movement
     {
         base.MovementLogic();
 
-        if (Input.anyKey)
-        {
-            Vector3 inputDirection = RetrieveInputDirection();
-            EntityRb.velocity = Vector3.Lerp(EntityRb.velocity, inputDirection, ResetSpeed);
-        }
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+
+        Vector3 inputDirection = Vector3.zero;
+
+        if (Mathf.Abs(horizontal) > 0.1f || Mathf.Abs(vertical) > 0.1f)
+            inputDirection = RetrieveInputDirection();
+
+        if (inputDirection != Vector3.zero)
+            EntityRb.velocity = Vector3.Lerp(EntityRb.velocity, inputDirection, Time.deltaTime * RetrieveSpeedMultiplier(ResetSpeed));
+
+        Debug.Log(EntityRb.velocity);
     }
 
     public override void RotationLogic()
@@ -55,7 +64,7 @@ public class PlayerMovementEntityFramework : Movement
     {
         PlayerCamera.transform.localRotation *= _rotation;
         Quaternion newRotation = PlayerCamera.transform.localRotation;
-        Quaternion limitedAngleRotation = new Quaternion(Mathf.Clamp(newRotation.x, -CamerAngleLimits, CamerAngleLimits), newRotation.y, newRotation.z, newRotation.w);
+        Quaternion limitedAngleRotation = new Quaternion(Mathf.Clamp(newRotation.x, -CameraAngleLimits, CameraAngleLimits), newRotation.y, newRotation.z, newRotation.w);
         PlayerCamera.transform.localRotation = limitedAngleRotation;
     }
 
@@ -68,9 +77,19 @@ public class PlayerMovementEntityFramework : Movement
 
         Vector3 localDirection = transform.TransformDirection(globalDirection);
 
-        Vector3 finalDirection = localDirection.normalized * Velocity;
+        Vector3 finalDirection = localDirection.normalized * RetrieveSpeedMultiplier(Velocity);
         finalDirection = new Vector3(finalDirection.x, EntityRb.velocity.y, finalDirection.z);
 
         return finalDirection;
+    }
+
+    private float RetrieveSpeedMultiplier(float _velocity)
+    {
+        float speed = _velocity;
+
+        if (Input.GetKey(SprintKey))
+            speed = _velocity * SprintMultiplier;
+
+        return speed;
     }
 }
