@@ -7,6 +7,7 @@ public class PlayerMovementEntityFramework : Movement
     [SerializeField] Camera PlayerCamera;
     [SerializeField] float MouseSensitivity;
     [SerializeField] float CamerAngleLimits;
+    [SerializeField] string FloorTag;
 
     public override void MovementStateMachine()
     {
@@ -40,6 +41,16 @@ public class PlayerMovementEntityFramework : Movement
             AssignCameraRotation(yRotation);
     }
 
+    public override void JumpLogic()
+    {
+        base.JumpLogic();
+
+        float jump = Input.GetAxis("Jump");
+
+        if (jump > 0 && CheckCollisionWithTag(FloorTag))
+            EntityRb.velocity = new Vector3(EntityRb.velocity.x, jump * JumpForce, EntityRb.velocity.z);
+    }
+
     private void AssignCameraRotation(Quaternion _rotation)
     {
         PlayerCamera.transform.localRotation *= _rotation;
@@ -57,6 +68,9 @@ public class PlayerMovementEntityFramework : Movement
 
         Vector3 localDirection = transform.TransformDirection(globalDirection);
 
-        return localDirection.normalized * Velocity;
+        Vector3 finalDirection = localDirection.normalized * Velocity;
+        finalDirection = new Vector3(finalDirection.x, EntityRb.velocity.y, finalDirection.z);
+
+        return finalDirection;
     }
 }

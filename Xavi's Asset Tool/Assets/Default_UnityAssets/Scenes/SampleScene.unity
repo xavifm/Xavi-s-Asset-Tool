@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 6507551}
   m_Layer: 0
   m_Name: Ground_3
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 69
@@ -360,6 +360,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 665423900}
     m_Modifications:
+    - target: {fileID: 1986291140878450, guid: a87f0180d46fd334b9025d0314a0dc70, type: 3}
+      propertyPath: m_TagString
+      value: Floor
+      objectReference: {fileID: 0}
     - target: {fileID: 4527368504392492, guid: a87f0180d46fd334b9025d0314a0dc70, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -418,7 +422,7 @@ GameObject:
   - component: {fileID: 391595987}
   m_Layer: 0
   m_Name: Ground_2
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 69
@@ -719,7 +723,7 @@ GameObject:
   - component: {fileID: 939325071}
   m_Layer: 0
   m_Name: Ground_6
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 69
@@ -849,7 +853,7 @@ GameObject:
   - component: {fileID: 1125703258}
   m_Layer: 0
   m_Name: Ground_8
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 69
@@ -948,7 +952,7 @@ GameObject:
   - component: {fileID: 1132819413}
   m_Layer: 0
   m_Name: Ground_5
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 69
@@ -1047,7 +1051,7 @@ GameObject:
   - component: {fileID: 1136888277}
   m_Layer: 0
   m_Name: Ground_4
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 69
@@ -1247,7 +1251,7 @@ GameObject:
   - component: {fileID: 1355981609}
   m_Layer: 0
   m_Name: Ground_1
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 69
@@ -1569,7 +1573,7 @@ GameObject:
   - component: {fileID: 1596292650}
   m_Layer: 0
   m_Name: Ground_7
-  m_TagString: Untagged
+  m_TagString: Floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 69
@@ -1771,7 +1775,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 2
 --- !u!114 &2113216379
 MonoBehaviour:
@@ -1805,9 +1809,11 @@ MonoBehaviour:
   CreatureAnimator: {fileID: 0}
   Velocity: 2
   ResetSpeed: 2
+  JumpForce: 2
   PlayerCamera: {fileID: 502998240}
   MouseSensitivity: 0.2
   CamerAngleLimits: 0.2
+  FloorTag: Floor
 --- !u!1 &2130700853
 GameObject:
   m_ObjectHideFlags: 0

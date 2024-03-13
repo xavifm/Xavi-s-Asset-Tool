@@ -9,6 +9,10 @@ public class Movement : MonoBehaviour
 
     [SerializeField] protected float Velocity;
     [SerializeField] protected float ResetSpeed;
+    [SerializeField] protected float JumpForce;
+
+    protected string CollisionTag;
+    protected bool Colliding;
 
     public virtual void MovementStateMachine()
     {
@@ -23,5 +27,30 @@ public class Movement : MonoBehaviour
     public virtual void RotationLogic()
     {
 
+    }
+
+    public virtual void JumpLogic()
+    {
+
+    }
+
+    protected bool CheckCollisionWithTag(string _tag)
+    {
+        if(!CollisionTag.Equals(string.Empty) && Colliding && CollisionTag.Equals(_tag))
+            return true;
+
+        return false;
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        CollisionTag = collision.gameObject.tag;
+        Colliding = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        CollisionTag = "";
+        Colliding = true;
     }
 }
