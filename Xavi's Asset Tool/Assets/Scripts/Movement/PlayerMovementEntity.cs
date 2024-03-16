@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementEntityFramework : Movement
+public class PlayerMovementEntityFramework : CreatureMovement
 {
     [SerializeField] Camera PlayerCamera;
     [SerializeField] float MouseSensitivity;
@@ -11,9 +11,9 @@ public class PlayerMovementEntityFramework : Movement
     [SerializeField] string FloorTag;
     [SerializeField] KeyCode SprintKey;
 
-    public override void MovementStateMachine()
+    public override void AnimationStateMachine()
     {
-        base.MovementStateMachine();
+        base.AnimationStateMachine();
     }
 
     public override void MovementLogic()
@@ -30,8 +30,6 @@ public class PlayerMovementEntityFramework : Movement
 
         if (inputDirection != Vector3.zero)
             EntityRb.velocity = Vector3.Lerp(EntityRb.velocity, inputDirection, Time.deltaTime * RetrieveSpeedMultiplier(ResetSpeed));
-
-        Debug.Log(EntityRb.velocity);
     }
 
     public override void RotationLogic()

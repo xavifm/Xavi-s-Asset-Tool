@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : CreatureEntity
 {
-    [SerializeField] private Movement MovementLogic;
+    [SerializeField] private CreatureMovement MovementLogic;
 
     public override void VirtualUpdate()
     {

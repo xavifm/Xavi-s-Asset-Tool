@@ -5,32 +5,22 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public Rigidbody EntityRb;
-    public Animator CreatureAnimator;
+    public Animator EntityAnimator;
 
-    [SerializeField] protected float Velocity;
-    [SerializeField] protected float ResetSpeed;
-    [SerializeField] protected float JumpForce;
+    public string CollisionTag;
+    public bool Colliding;
 
-    protected string CollisionTag;
-    protected bool Colliding;
-
-    public virtual void MovementStateMachine()
+    public virtual void AnimationStateMachine()
     {
 
     }
 
     public virtual void MovementLogic()
     {
-        Vector3 resetVector = new Vector3(0, EntityRb.velocity.y, 0);
-        EntityRb.velocity = Vector3.Lerp(EntityRb.velocity, resetVector, Time.deltaTime * ResetSpeed);
+
     }
 
     public virtual void RotationLogic()
-    {
-
-    }
-
-    public virtual void JumpLogic()
     {
 
     }
