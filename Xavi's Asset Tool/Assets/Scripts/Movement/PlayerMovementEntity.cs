@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementEntityFramework : CreatureMovement
+public class PlayerMovementEntity : CreatureMovement
 {
     [SerializeField] Camera PlayerCamera;
     [SerializeField] float MouseSensitivity;

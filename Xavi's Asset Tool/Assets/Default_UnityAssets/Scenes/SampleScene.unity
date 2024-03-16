@@ -1802,11 +1802,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2113216375}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6baab8c82f3049544af644d1c6ac8b7d, type: 3}
+  m_Script: {fileID: 11500000, guid: 16fdef72bc78df54c9cec74c4656d955, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 2113216377}
-  CreatureAnimator: {fileID: 0}
+  EntityAnimator: {fileID: 0}
+  CollisionTag: 
+  Colliding: 0
   Velocity: 7
   ResetSpeed: 10
   JumpForce: 2

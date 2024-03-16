@@ -7,8 +7,8 @@ public class Movement : MonoBehaviour
     public Rigidbody EntityRb;
     public Animator EntityAnimator;
 
-    public string CollisionTag;
-    public bool Colliding;
+    [HideInInspector] public string CollisionTag;
+    [HideInInspector] public bool Colliding;
 
     public virtual void AnimationStateMachine()
     {
