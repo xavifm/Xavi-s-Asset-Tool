@@ -7,6 +7,7 @@ public class Entity : MonoBehaviour
     public enum EntityType { CREATURE_PLAYER, CREATURE_NPC, WORLD_PROP, WEAPON }
 
     public EntityType TypeOfEntity;
+    public string Name;
 
     void Start()
     {

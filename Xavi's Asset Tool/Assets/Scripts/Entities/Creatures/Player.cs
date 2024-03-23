@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : CreatureEntity
 {
     [SerializeField] private CreatureMovement MovementLogic;
+    [SerializeField] private Inventory InventoryLogic;
 
     public override void VirtualUpdate()
     {

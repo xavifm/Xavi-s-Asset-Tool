@@ -254,6 +254,25 @@ Transform:
   m_Father: {fileID: 2113216376}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &118893741 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1293149991175426, guid: a87f0180d46fd334b9025d0314a0dc70, type: 3}
+  m_PrefabInstance: {fileID: 296138508}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &118893745
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 118893741}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300008, guid: 47616bd0cda748d4cbedcfc908506b9d, type: 3}
 --- !u!1 &170171480
 GameObject:
   m_ObjectHideFlags: 0
@@ -1735,6 +1754,7 @@ GameObject:
   - component: {fileID: 2113216377}
   - component: {fileID: 2113216379}
   - component: {fileID: 2113216380}
+  - component: {fileID: 2113216381}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1793,6 +1813,7 @@ MonoBehaviour:
   Name: 
   life: 100
   MovementLogic: {fileID: 2113216380}
+  InventoryLogic: {fileID: 2113216381}
 --- !u!114 &2113216380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1818,6 +1839,20 @@ MonoBehaviour:
   SprintMultiplier: 1.8
   FloorTag: Floor
   SprintKey: 304
+--- !u!114 &2113216381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113216375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150e6ee520be6d64781f33e0bcdac570, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Items: []
+  StorageTypesList: 0200000003000000
 --- !u!1 &2130700853
 GameObject:
   m_ObjectHideFlags: 0
