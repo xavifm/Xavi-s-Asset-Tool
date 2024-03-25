@@ -1754,6 +1754,7 @@ GameObject:
   - component: {fileID: 2113216377}
   - component: {fileID: 2113216379}
   - component: {fileID: 2113216380}
+  - component: {fileID: 2113216382}
   - component: {fileID: 2113216381}
   m_Layer: 0
   m_Name: Player
@@ -1827,7 +1828,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 2113216377}
+  EntityTransform: {fileID: 0}
   EntityAnimator: {fileID: 0}
+  ResizeEntity: {fileID: 2113216382}
+  ResizeSpeed: 2
   CollisionTag: 
   Colliding: 0
   Velocity: 7
@@ -1853,6 +1857,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Items: []
   StorageTypesList: 0200000003000000
+--- !u!114 &2113216382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113216375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 924f5b6358048ef45a7e07c2257cfc39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OriginalSize: {x: 0, y: 0, z: 0}
 --- !u!1 &2130700853
 GameObject:
   m_ObjectHideFlags: 0
