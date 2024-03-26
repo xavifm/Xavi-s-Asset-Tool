@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Player : CreatureEntity
 {
-    [SerializeField] private CreatureMovement MovementLogic;
     [SerializeField] private Inventory InventoryLogic;
 
     public override void VirtualUpdate()
     {
         base.VirtualUpdate();
-        MovementLogic.MovementLogic();
-        MovementLogic.RotationLogic();
-        MovementLogic.JumpLogic();
+        PlayerMovementEntity movementCast = (PlayerMovementEntity) MovementLogic;
+
+        movementCast.MovementLogic();
+        movementCast.RotationLogic();
+        movementCast.JumpLogic();
     }
 }

@@ -8,8 +8,8 @@ public class Movement : MonoBehaviour
     public Transform EntityTransform;
     public Animator EntityAnimator;
     
-    [SerializeField] EntityResize ResizeEntity;
-    [SerializeField] float ResizeSpeed = 2;
+    public EntityResize ResizeEntity;
+    public float ResizeSpeed = 2;
 
     [HideInInspector] public string CollisionTag;
     [HideInInspector] public bool Colliding;
@@ -52,7 +52,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public virtual void RestoreSize(Vector3 _size, bool _lerp = false)
+    public virtual void RestoreSize(bool _lerp = false)
     {
         if (ResizeEntity != null)
         {

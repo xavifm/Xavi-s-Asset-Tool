@@ -7,13 +7,14 @@ public class Inventory : MonoBehaviour
     [SerializeField] List<GameObject> Items;
     [SerializeField] List<Entity.EntityType> StorageTypesList;
 
+    const float STORE_SIZE = 0.5f;
+
     public bool StoreItem(Entity _object)
     {
         if(CheckIfIsForStorage(_object))
         {
             Items.Add(_object.gameObject);
-
-            //more future logic for storing items
+            StartCoroutine(StoreCoroutine(_object));
         }
 
         return false;
@@ -23,9 +24,8 @@ public class Inventory : MonoBehaviour
     {
         if (CheckIfItemExists(_object))
         {
-            //more future logic for retrieving items
-
             Items.Remove(_object.gameObject);
+            StartCoroutine(RetrieveCoroutine(_object));
         }
 
         return false;
@@ -51,5 +51,27 @@ public class Inventory : MonoBehaviour
         }
 
         return false;
+    }
+
+    private IEnumerator StoreCoroutine(Entity _object)
+    {
+        while(_object.transform.localScale.magnitude > STORE_SIZE)
+        {
+            _object.MovementLogic.Resize(Vector3.zero, true);
+        }
+
+        yield return null;
+    } 
+
+    private IEnumerator RetrieveCoroutine(Entity _object)
+    {
+        float originalMagnitude = _object.MovementLogic.ResizeEntity.OriginalSize.magnitude;
+
+        while (_object.transform.localScale.magnitude < originalMagnitude)
+        {
+            _object.MovementLogic.RestoreSize(true);
+        }
+
+        yield return null;
     }
 }
