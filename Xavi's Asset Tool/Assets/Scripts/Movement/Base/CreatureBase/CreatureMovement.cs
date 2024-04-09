@@ -16,8 +16,15 @@ public class CreatureMovement : Movement
         EntityRb.velocity = Vector3.Lerp(EntityRb.velocity, resetVector, Time.deltaTime * ResetSpeed);
     }
 
+    public virtual Entity CheckPointingEntity()
+    {
+
+        return null;
+    }
+
     public virtual void JumpLogic()
     {
 
     }
+
 }

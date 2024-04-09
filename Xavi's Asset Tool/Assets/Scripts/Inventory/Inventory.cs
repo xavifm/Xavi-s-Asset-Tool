@@ -7,23 +7,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] List<GameObject> Items;
     [SerializeField] List<Entity.EntityType> StorageTypesList;
 
-    /* DEBUG */ public Entity test;
-    /* DEBUG */ public bool keep;
-
     const float STORE_SIZE = 0.5f;
-
-    /* DEBUG */
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            keep = !keep;
-            if (keep)
-                StoreItem(test);
-            else
-                RetrieveItem(test);
-        }
-    }
 
     public bool StoreItem(Entity _object)
     {
