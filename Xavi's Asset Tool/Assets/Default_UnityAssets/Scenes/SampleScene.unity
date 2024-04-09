@@ -2001,6 +2001,8 @@ MonoBehaviour:
   Velocity: 7
   ResetSpeed: 10
   JumpForce: 2
+  RaycastReferencePoint: {fileID: 502998237}
+  PickupDistance: 5
   PlayerCamera: {fileID: 502998240}
   MouseSensitivity: 0.2
   CameraAngleLimits: 0.2
@@ -2021,8 +2023,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Items: []
   StorageTypesList: 0200000003000000
-  test: {fileID: 1623602171}
-  keep: 0
 --- !u!114 &2113216382
 MonoBehaviour:
   m_ObjectHideFlags: 0

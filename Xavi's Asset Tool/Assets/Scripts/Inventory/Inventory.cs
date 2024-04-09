@@ -9,6 +9,17 @@ public class Inventory : MonoBehaviour
 
     const float STORE_SIZE = 0.5f;
 
+    /*DEBUG*/
+    void Update()
+    {
+        Entity test = GetComponent<CreatureMovement>().CheckPointingEntity();
+
+        if(test != null)
+        {
+            Debug.Log(test.name);
+        }
+    }
+
     public bool StoreItem(Entity _object)
     {
         if(CheckIfIsForStorage(_object))
