@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : CreatureEntity
 {
-    [SerializeField] private Inventory InventoryLogic;
+    [SerializeField] KeyCode ActionKey;
 
     public override void VirtualUpdate()
     {
@@ -14,5 +14,8 @@ public class Player : CreatureEntity
         movementCast.MovementLogic();
         movementCast.RotationLogic();
         movementCast.JumpLogic();
+
+        if (Input.GetKeyDown(ActionKey))
+            PickupEntity();
     }
 }

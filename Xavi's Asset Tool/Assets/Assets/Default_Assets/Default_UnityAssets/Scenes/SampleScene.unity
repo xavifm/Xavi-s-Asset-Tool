@@ -1979,6 +1979,7 @@ MonoBehaviour:
   MovementLogic: {fileID: 2113216380}
   life: 100
   InventoryLogic: {fileID: 2113216381}
+  ActionKey: 101
 --- !u!114 &2113216380
 MonoBehaviour:
   m_ObjectHideFlags: 0
