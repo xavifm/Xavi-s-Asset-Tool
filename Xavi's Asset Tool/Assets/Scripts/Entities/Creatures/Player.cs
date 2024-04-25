@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : CreatureEntity
 {
     [SerializeField] KeyCode ActionKey;
+    [SerializeField] KeyCode PauseKey;
+    [SerializeField] MenuManager MenuSystem;
 
     public override void VirtualUpdate()
     {
@@ -14,6 +16,9 @@ public class Player : CreatureEntity
         movementCast.MovementLogic();
         movementCast.RotationLogic();
         movementCast.JumpLogic();
+
+        if (Input.GetKeyDown(PauseKey))
+            MenuSystem.OpenMenu("PAUSE");
 
         if (Input.GetKeyDown(ActionKey))
             PickupEntity();
