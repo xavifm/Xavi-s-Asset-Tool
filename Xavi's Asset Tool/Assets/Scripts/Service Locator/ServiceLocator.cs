@@ -5,34 +5,29 @@ using UnityEngine;
 
 public class ServiceLocator : MonoBehaviour
 {
-    [SerializeField] readonly List<object> Services;
+    [SerializeField] List<Service> Services;
 
-    public void AddService<T>(T _service)
+    public void AddService(Service _service)
     {
-        object objectQuery = GetService<T>();
-        
-        if(objectQuery != null)
+        if (!Services.Contains(_service))
             Services.Add(_service);
     }
 
-    public void RemoveService<T>()
+    public void RemoveService(Service _service)
     {
-        object objectQuery = GetService<T>();
-
-        if (objectQuery != null)
-            Services.Remove(objectQuery);
+        Services.Remove(_service);
     }
 
-    public T GetService<T>()
+    public T GetService<T>() where T : Service
     {
         Type type = typeof(T);
         T resultType = default(T);
 
-        foreach (object service in Services)
+        foreach (Service service in Services)
         {
             if (service.GetType() == type)
             {
-                resultType = (T)service;
+                resultType = service as T;
                 break;
             }
         }
@@ -40,3 +35,4 @@ public class ServiceLocator : MonoBehaviour
         return resultType;
     }
 }
+

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WindowManager : MonoBehaviour
+public class WindowManager : Service
 {
-    [SerializeField] GameObject[] WindowPrefabs;
+    [SerializeField] List<GameObject> WindowPrefabs;
     GameObject CurrentWindow;
 
     public void OpenWindow(string _windowName)
@@ -13,8 +13,8 @@ public class WindowManager : MonoBehaviour
 
         if(prefabQuery != null)
         {
-            //TEST
             CurrentWindow = prefabQuery;
+            //TEST
             prefabQuery.SetActive(true);
         }
     }
