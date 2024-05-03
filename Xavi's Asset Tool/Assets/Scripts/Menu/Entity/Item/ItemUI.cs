@@ -22,6 +22,7 @@ public class ItemUI : MonoBehaviour
 
     public void UpdateItem(Entity _object)
     {
-
+        Name = _object.Name;
+        Description = _object.Description;
     }
 }

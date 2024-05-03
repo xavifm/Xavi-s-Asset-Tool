@@ -6,6 +6,7 @@ public class EntitiesMenuManager : MonoBehaviour
 {
     [SerializeField] Transform PivotParent;
     [SerializeField] GameObject ItemPrefab;
+    [SerializeField] LegendDetail LegendDetailMenu;
 
     public void UpdateEntityList(List<GameObject> Items)
     {
@@ -33,8 +34,11 @@ public class EntitiesMenuManager : MonoBehaviour
 
                 if (itemUI != null)
                 {
-                    itemUI.Name = entity.Name;
-                    itemUI.Description = entity.Description;
+                    itemUI.UpdateItem(entity);
+
+                    UIDetails details = newItem.GetComponent<UIDetails>();
+                    details.Legend = LegendDetailMenu;
+                    details.UIEntity = entity;
                 }
             }
             else
