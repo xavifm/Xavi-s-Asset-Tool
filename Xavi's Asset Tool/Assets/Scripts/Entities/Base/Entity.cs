@@ -8,6 +8,7 @@ public class Entity : MonoBehaviour
 
     public EntityType TypeOfEntity;
     public string Name;
+    public string Description;
     public Movement MovementLogic;
 
     void Start()

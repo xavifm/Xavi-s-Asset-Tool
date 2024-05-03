@@ -7,20 +7,23 @@ public class Inventory : MonoBehaviour
     [SerializeField] List<GameObject> Items;
     [SerializeField] List<Entity.EntityType> StorageTypesList;
 
+    [SerializeField] EntitiesMenuManager MenuView;
+
     const float STORE_SIZE = 0.5f;
 
-    public bool StoreItem(Entity _object)
+    public void StoreItem(Entity _object)
     {
         if(CheckIfIsForStorage(_object))
         {
             Items.Add(_object.gameObject);
             StartCoroutine(StoreCoroutine(_object));
-        }
 
-        return false;
+            if(MenuView != null)
+                MenuView.UpdateEntityList(Items);
+        }
     }
 
-    public bool RetrieveItem(Entity _object)
+    public void RetrieveItem(Entity _object)
     {
         GameObject query = CheckIfItemExists(_object);
 
@@ -29,9 +32,10 @@ public class Inventory : MonoBehaviour
             Items.Remove(query);
             Entity entity = query.GetComponent<Entity>();
             RetrieveLogic(entity);
-        }
 
-        return false;
+            if (MenuView != null)
+                MenuView.UpdateEntityList(Items);
+        }
     }
 
     private GameObject CheckIfItemExists(Entity _object)
