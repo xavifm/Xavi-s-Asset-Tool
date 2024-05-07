@@ -7,6 +7,8 @@ public class MenuManager : MonoBehaviour
     public ServiceLocator Service;
     public List<MenuList> Menus;
 
+    public bool HaveOpenMenu;
+
     public void OpenMenu(string _key)
     {
         MenuList menuQuery = GetMenuFromKey(_key);
@@ -14,10 +16,14 @@ public class MenuManager : MonoBehaviour
 
         if (menuQuery != null)
         {
+            HaveOpenMenu = false;
             CloseMenu(_key);
 
             if (!menuQuery.opened)
+            {
+                HaveOpenMenu = true;
                 Service.GetService<WindowManager>().OpenWindow(value);
+            }
 
             menuQuery.opened = !menuQuery.opened;
         }
@@ -29,11 +35,15 @@ public class MenuManager : MonoBehaviour
         string value = menuQuery.value;
 
         if (menuQuery != null)
+        {
+            HaveOpenMenu = false;
             Service.GetService<WindowManager>().CloseWindow(value);
+        }
     }
 
     public void CloseCurrentMenu()
     {
+        HaveOpenMenu = false;
         Service.GetService<WindowManager>().CloseCurrentWindow();
     }
 

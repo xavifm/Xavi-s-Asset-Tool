@@ -9,7 +9,6 @@ public class UIDetails : UICommand
 
     public override void Execute()
     {
-        Debug.Log("execute");
         Legend.SwitchEntity(UIEntity);
     }
 }

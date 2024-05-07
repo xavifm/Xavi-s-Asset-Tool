@@ -73,7 +73,10 @@ public class Inventory : MonoBehaviour
 
     private void RetrieveLogic(Entity _object)
     {
-        _object.gameObject.SetActive(true);
+        GameObject sceneObject = _object.gameObject;
+        sceneObject.transform.position = transform.position;
+        sceneObject.SetActive(true);
+
         _object.MovementLogic.RestoreSize();
     }
 }

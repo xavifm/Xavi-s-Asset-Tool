@@ -10,6 +10,7 @@ public class PlayerMovementEntity : CreatureMovement
     [SerializeField] float SprintMultiplier;
     [SerializeField] string FloorTag;
     [SerializeField] KeyCode SprintKey;
+    [SerializeField] MenuManager MenuManager;
 
     public override void AnimationStateMachine()
     {
@@ -42,9 +43,9 @@ public class PlayerMovementEntity : CreatureMovement
         Quaternion xRotation = new Quaternion(0, mouseX, 0, 1);
         Quaternion yRotation = new Quaternion(-mouseY, 0, 0, 1);
 
-        if (mouseX != 0)
+        if (mouseX != 0 && !MenuManager.HaveOpenMenu)
             transform.rotation *= xRotation;
-        if (mouseY != 0)
+        if (mouseY != 0 && !MenuManager.HaveOpenMenu)
             AssignCameraRotation(yRotation);
     }
 
