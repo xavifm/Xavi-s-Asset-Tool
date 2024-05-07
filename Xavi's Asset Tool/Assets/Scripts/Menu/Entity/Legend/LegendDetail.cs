@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
@@ -18,6 +19,8 @@ public class LegendDetail : MonoBehaviour
         CurrentEntity = _entity;
 
         NameText.text = CurrentEntity.Name;
-        LegendText.text = CurrentEntity.Description;
+
+        if(CurrentEntity.Description != null)
+            LegendText.text = CurrentEntity.Description.text;
     }
 }

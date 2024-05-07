@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Entity : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Entity : MonoBehaviour
 
     public EntityType TypeOfEntity;
     public string Name;
-    public string Description;
+    public Text Description;
     public Movement MovementLogic;
 
     void Start()

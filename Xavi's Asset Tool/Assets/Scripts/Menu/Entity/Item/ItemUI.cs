@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
 public class ItemUI : MonoBehaviour
 {
     public string Name;
-    public string Description;
+    public Text Description;
 
     [SerializeField] TextMeshProUGUI NameText;
 
