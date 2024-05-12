@@ -11,6 +11,7 @@ public class Entity : MonoBehaviour
     public string Name;
     public Text Description;
     public Movement MovementLogic;
+    public bool StoredItem;
 
     void Start()
     {

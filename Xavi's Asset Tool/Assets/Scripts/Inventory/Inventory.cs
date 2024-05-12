@@ -13,9 +13,11 @@ public class Inventory : MonoBehaviour
 
     public void StoreItem(Entity _object)
     {
-        if(CheckIfIsForStorage(_object))
+        if(!_object.StoredItem && CheckIfIsForStorage(_object))
         {
             Items.Add(_object.gameObject);
+            _object.StoredItem = true;
+
             StartCoroutine(StoreCoroutine(_object));
 
             if(MenuView != null)
@@ -30,6 +32,8 @@ public class Inventory : MonoBehaviour
         if (query != null)
         {
             Items.Remove(query);
+            _object.StoredItem = false;
+
             Entity entity = query.GetComponent<Entity>();
             RetrieveLogic(entity);
 
