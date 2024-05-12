@@ -14,10 +14,13 @@ public class Movement : MonoBehaviour
     [HideInInspector] public string CollisionTag;
     [HideInInspector] public bool Colliding;
 
+    private RigidbodyConstraints OriginalConstraints;
+    [SerializeField] Collider[] ColliderList;
 
     void Start()
     {
         EntityTransform = transform;
+        OriginalConstraints = EntityRb.constraints;
 
         if(ResizeEntity != null)
             ResizeEntity.OriginalSize = EntityTransform.localScale;
@@ -66,12 +69,40 @@ public class Movement : MonoBehaviour
         }
     }
 
+    public void EnablePhysics()
+    {
+        EntityRb.constraints = OriginalConstraints;
+        EnableAllCollisions();
+    }
+
+    public void DisablePhysics()
+    {
+        EntityRb.constraints = RigidbodyConstraints.FreezeAll;
+        DisableAllCollisions();
+    }
+
     protected bool CheckCollisionWithTag(string _tag)
     {
         if(!CollisionTag.Equals(string.Empty) && Colliding && CollisionTag.Equals(_tag))
             return true;
 
         return false;
+    }
+
+    private void DisableAllCollisions()
+    {
+        foreach(Collider collision in ColliderList)
+        {
+            collision.enabled = false;
+        }
+    }
+
+    private void EnableAllCollisions()
+    {
+        foreach (Collider collision in ColliderList)
+        {
+            collision.enabled = true;
+        }
     }
 
     private void OnCollisionStay(Collision collision)
