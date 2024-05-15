@@ -12,15 +12,23 @@ public class ItemUI : MonoBehaviour
     public int Quantity = 1;
 
     [SerializeField] TextMeshProUGUI NameText;
+    [SerializeField] TextMeshProUGUI QuantityText;
 
-    public void OnEnable()
+    bool ItemStarted = false;
+
+    public void Update()
     {
-        InitializeItem();
+        if(!ItemStarted)
+            StartCoroutine(InitializeItem());
     }
 
-    public void InitializeItem()
+    public IEnumerator InitializeItem()
     {
+        yield return new WaitForSeconds(0.01f);
         NameText.text = Name;
+        QuantityText.text = Quantity.ToString();
+
+        ItemStarted = true;
     }
 
     public void UpdateItem(Entity _object)

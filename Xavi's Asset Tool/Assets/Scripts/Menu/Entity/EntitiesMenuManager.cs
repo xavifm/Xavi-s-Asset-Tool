@@ -99,7 +99,7 @@ public class EntitiesMenuManager : MonoBehaviour
     IEnumerator UpdateEntityListCoroutine(List<GameObject> Items)
     {
         ResetList();
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.05f);
         PopulateList(Items);
     }
 }
