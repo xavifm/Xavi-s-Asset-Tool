@@ -8,6 +8,8 @@ public class ItemUI : MonoBehaviour
 {
     public string Name;
     public Text Description;
+    public Entity Entity;
+    public int Quantity = 1;
 
     [SerializeField] TextMeshProUGUI NameText;
 

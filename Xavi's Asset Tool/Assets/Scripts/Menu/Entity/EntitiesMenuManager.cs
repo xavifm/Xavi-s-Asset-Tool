@@ -10,8 +10,7 @@ public class EntitiesMenuManager : MonoBehaviour
 
     public void UpdateEntityList(List<GameObject> Items)
     {
-        ResetList();
-        PopulateList(Items);
+        StartCoroutine(UpdateEntityListCoroutine(Items));
     }
 
     void ResetList()
@@ -27,7 +26,10 @@ public class EntitiesMenuManager : MonoBehaviour
         foreach (GameObject item in Items)
         {
             Entity entity = item.GetComponent<Entity>();
-            if (entity != null)
+            Entity UIQuery = GetExistingEntity(entity);
+
+
+            if (UIQuery == null && entity != null)
             {
                 GameObject newItem = Instantiate(ItemPrefab, PivotParent);
                 ItemUI itemUI = newItem.GetComponent<ItemUI>();
@@ -38,13 +40,66 @@ public class EntitiesMenuManager : MonoBehaviour
 
                     UIDetails details = newItem.GetComponent<UIDetails>();
                     details.Legend = LegendDetailMenu;
-                    details.UIEntity = entity;
+                    itemUI.Entity = entity;
                 }
             }
-            else
-            {
-                Debug.LogWarning("GameObject " + item.name + " does not have Entity attached.");
-            }
+            else if (UIQuery != null)
+                IncrementUIQuantity(UIQuery);
         }
+    }
+
+    void IncrementUIQuantity(Entity _entity)
+    {
+        Transform queryUI = GetUIItem(_entity);
+
+        if (queryUI != null)
+            queryUI.GetComponent<ItemUI>().Quantity += 1;
+    }
+
+    Entity GetExistingEntity(Entity _entity)
+    {
+        Transform query = GetUIItem(_entity);
+        Entity result = null;
+
+        if(query != null)
+            result = query.GetComponent<ItemUI>().Entity;
+
+        return result;
+    }
+
+    Transform GetUIItem(Entity _entity)
+    {
+        Transform query = null;
+
+        foreach (Transform child in PivotParent)
+        {
+            ItemUI details = child.GetComponent<ItemUI>();
+            Entity entity = details.Entity;
+
+            if (details != null && CheckIfAreSameIdentity(_entity, entity))
+                query = child;
+
+        }
+
+        return query;
+    }
+
+    bool CheckIfAreSameIdentity(Entity _entity1, Entity _entity2)
+    {
+        bool result = false;
+
+        if (_entity1.Name.Equals(_entity2.Name) &&
+            _entity1.Description.text.Equals(_entity2.Description.text) &&
+            _entity1.TypeOfEntity.Equals(_entity2.TypeOfEntity))
+            result = true;
+
+        return result;
+    }
+
+    IEnumerator UpdateEntityListCoroutine(List<GameObject> Items)
+    {
+        ResetList();
+        yield return new WaitForSeconds(0.2f);
+        PopulateList(Items);
     }
 }
