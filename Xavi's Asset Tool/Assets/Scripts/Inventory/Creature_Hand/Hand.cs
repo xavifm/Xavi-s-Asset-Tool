@@ -5,6 +5,10 @@ using UnityEngine;
 public class Hand : MonoBehaviour
 {
     [SerializeField] Entity CurrentHandItem;
+    [SerializeField] Transform ThrowPivot;
+    [SerializeField] float ThrowForce = 2;
+
+    const float THROW_MARGIN = 0.8f;
 
     public void SetHandItem(Entity _item)
     {
@@ -31,6 +35,19 @@ public class Hand : MonoBehaviour
     {
         if (CurrentHandItem != null && _item.Equals(CurrentHandItem))
             DropCurrentHandItem();
+    }
+
+    public void ThrowHandItem(Inventory _inventory)
+    {
+        if(CurrentHandItem != null)
+        {
+            Entity throwObject = CurrentHandItem;
+            DropCurrentHandItem();
+            _inventory.RetrieveItem(throwObject);
+
+            throwObject.transform.position = ThrowPivot.transform.position + ThrowPivot.TransformDirection(Vector3.forward) * THROW_MARGIN;
+            throwObject.MovementLogic.EntityRb.velocity = ThrowPivot.TransformDirection(Vector3.forward) * ThrowForce;
+        }
     }
 
     public void DropCurrentHandItem()

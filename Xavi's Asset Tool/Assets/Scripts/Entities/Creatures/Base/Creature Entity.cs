@@ -6,6 +6,8 @@ public class CreatureEntity : Entity
 {
     public int life;
     [SerializeField] protected Inventory InventoryLogic;
+    [SerializeField] protected Hand HandItem;
+
 
     public virtual void PickupEntity()
     {

@@ -463,8 +463,8 @@ RectTransform:
   m_GameObject: {fileID: 97160110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.7793111}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -1146,6 +1146,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentHandItem: {fileID: 0}
+  ThrowPivot: {fileID: 502998237}
+  ThrowForce: 10
 --- !u!1 &622683188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2515,8 +2517,8 @@ RectTransform:
   m_GameObject: {fileID: 1215857621}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 4.016}
-  m_LocalScale: {x: 2.5176, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.2588, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
@@ -3388,8 +3390,8 @@ RectTransform:
   m_GameObject: {fileID: 1623602170}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.7793111}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -3608,8 +3610,8 @@ RectTransform:
   m_GameObject: {fileID: 1682994623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1.7793111}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -4381,8 +4383,10 @@ MonoBehaviour:
   StoredItem: 0
   life: 100
   InventoryLogic: {fileID: 2113216381}
+  HandItem: {fileID: 533688154}
   ActionKey: 101
   PauseKey: 27
+  ThrowKey: 323
   MenuSystem: {fileID: 2113216383}
 --- !u!114 &2113216380
 MonoBehaviour:
@@ -4410,8 +4414,8 @@ MonoBehaviour:
   RaycastReferencePoint: {fileID: 502998237}
   PickupDistance: 5
   PlayerCamera: {fileID: 502998240}
-  MouseSensitivity: 0.2
-  CameraAngleLimits: 0.2
+  MouseSensitivity: 0.1
+  CameraAngleLimits: 0.5
   SprintMultiplier: 1.8
   FloorTag: Floor
   SprintKey: 304
