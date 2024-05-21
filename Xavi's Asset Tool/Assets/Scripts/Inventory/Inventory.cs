@@ -42,6 +42,72 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public Entity GetNextWeapon(Entity _currentObject, Entity.EntityType[] _availableTypes , float _direction)
+    {
+        Entity itemQuery = null;
+
+        int currentIndex = GetItemIndexFromInventory(_currentObject);
+
+        if (currentIndex == -1)
+            return GetAnyAvailableEntity(_availableTypes);
+
+        int nextIndex = currentIndex;
+
+        do
+        {
+            nextIndex += (int)_direction;
+
+            if (nextIndex < 0)
+                nextIndex = Items.Count - 1;
+            else if (nextIndex >= Items.Count)
+                nextIndex = 0;
+
+            Entity nextEntity = Items[nextIndex].GetComponent<Entity>();
+
+            if (nextEntity != null && System.Array.Exists(_availableTypes, type => type == nextEntity.TypeOfEntity))
+            {
+                itemQuery = nextEntity;
+                break;
+            }
+        } 
+        while (nextIndex != currentIndex);
+
+        return itemQuery;
+    }
+
+    private Entity GetAnyAvailableEntity(Entity.EntityType[] _availableTypes)
+    {
+        Entity entityQuery = null;
+
+        foreach (GameObject item in Items)
+        {
+            Entity entity = item.GetComponent<Entity>();
+            if (System.Array.Exists(_availableTypes, type => type == entity.TypeOfEntity))
+            {
+                entityQuery = entity;
+                break;
+            }
+        }
+
+        return entityQuery;
+    }
+
+    private int GetItemIndexFromInventory(Entity _currentObject)
+    {
+        int currentIndex = -1;
+
+        for (int i = 0; i < Items.Count; i++)
+        {
+            if (Items[i].GetComponent<Entity>() == _currentObject)
+            {
+                currentIndex = i;
+                break;
+            }
+        }
+
+        return currentIndex;
+    }
+
     private GameObject CheckIfItemExists(Entity _object)
     {
         foreach (GameObject item in Items)

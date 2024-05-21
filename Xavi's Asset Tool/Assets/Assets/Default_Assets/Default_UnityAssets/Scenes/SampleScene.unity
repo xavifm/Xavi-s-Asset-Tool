@@ -1146,6 +1146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentHandItem: {fileID: 0}
+  FastEquipableItems: 02000000
   ThrowPivot: {fileID: 502998237}
   ThrowForce: 10
 --- !u!1 &622683188
