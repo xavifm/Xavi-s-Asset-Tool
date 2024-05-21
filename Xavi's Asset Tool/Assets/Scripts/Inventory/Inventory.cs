@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] List<GameObject> Items;
+    public List<GameObject> Items;
     [SerializeField] List<Entity.EntityType> StorageTypesList;
 
     [SerializeField] EntitiesMenuManager MenuView;
@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour
             StartCoroutine(StoreCoroutine(_object));
 
             if(MenuView != null)
-                MenuView.UpdateEntityList(Items);
+                MenuView.UpdateEntityList(this);
         }
     }
 
@@ -38,7 +38,7 @@ public class Inventory : MonoBehaviour
             RetrieveLogic(entity);
 
             if (MenuView != null)
-                MenuView.UpdateEntityList(Items);
+                MenuView.UpdateEntityList(this);
         }
     }
 
@@ -73,6 +73,32 @@ public class Inventory : MonoBehaviour
         while (nextIndex != currentIndex);
 
         return itemQuery;
+    }
+
+    public Entity GetItemByIdentity(Entity _object)
+    {
+        Entity itemQuery = null;
+
+        foreach (GameObject item in Items)
+        {
+            Entity entity = item.GetComponent<Entity>();
+            if (CheckIfAreSameIdentity(entity, _object))
+                itemQuery = entity;
+        }
+
+        return itemQuery;
+    }
+
+    public bool CheckIfAreSameIdentity(Entity _entity1, Entity _entity2)
+    {
+        bool result = false;
+
+        if (_entity1.Name.Equals(_entity2.Name) &&
+            _entity1.Description.text.Equals(_entity2.Description.text) &&
+            _entity1.TypeOfEntity.Equals(_entity2.TypeOfEntity))
+            result = true;
+
+        return result;
     }
 
     private Entity GetAnyAvailableEntity(Entity.EntityType[] _availableTypes)
