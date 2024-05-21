@@ -8,9 +8,9 @@ public class EntitiesMenuManager : MonoBehaviour
     [SerializeField] GameObject ItemPrefab;
     [SerializeField] LegendDetail LegendDetailMenu;
 
-    public void UpdateEntityList(List<GameObject> Items)
+    public void UpdateEntityList(Inventory _inventory)
     {
-        StartCoroutine(UpdateEntityListCoroutine(Items));
+        StartCoroutine(UpdateEntityListCoroutine(_inventory));
     }
 
     void ResetList()
@@ -21,12 +21,12 @@ public class EntitiesMenuManager : MonoBehaviour
         }
     }
 
-    void PopulateList(List<GameObject> Items)
+    void PopulateList(Inventory _inventory)
     {
-        foreach (GameObject item in Items)
+        foreach (GameObject item in _inventory.Items)
         {
             Entity entity = item.GetComponent<Entity>();
-            Entity UIQuery = GetExistingEntity(entity);
+            Entity UIQuery = GetExistingEntity(entity, _inventory);
 
 
             if (UIQuery == null && entity != null)
@@ -44,21 +44,21 @@ public class EntitiesMenuManager : MonoBehaviour
                 }
             }
             else if (UIQuery != null)
-                IncrementUIQuantity(UIQuery);
+                IncrementUIQuantity(UIQuery, _inventory);
         }
     }
 
-    void IncrementUIQuantity(Entity _entity)
+    void IncrementUIQuantity(Entity _entity, Inventory _inventory)
     {
-        Transform queryUI = GetUIItem(_entity);
+        Transform queryUI = GetUIItem(_entity, _inventory);
 
         if (queryUI != null)
             queryUI.GetComponent<ItemUI>().Quantity += 1;
     }
 
-    Entity GetExistingEntity(Entity _entity)
+    Entity GetExistingEntity(Entity _entity, Inventory _inventory)
     {
-        Transform query = GetUIItem(_entity);
+        Transform query = GetUIItem(_entity, _inventory);
         Entity result = null;
 
         if(query != null)
@@ -67,7 +67,7 @@ public class EntitiesMenuManager : MonoBehaviour
         return result;
     }
 
-    Transform GetUIItem(Entity _entity)
+    Transform GetUIItem(Entity _entity, Inventory _inventory)
     {
         Transform query = null;
 
@@ -76,7 +76,7 @@ public class EntitiesMenuManager : MonoBehaviour
             ItemUI details = child.GetComponent<ItemUI>();
             Entity entity = details.Entity;
 
-            if (details != null && CheckIfAreSameIdentity(_entity, entity))
+            if (details != null && _inventory.CheckIfAreSameIdentity(_entity, entity))
                 query = child;
 
         }
@@ -84,22 +84,10 @@ public class EntitiesMenuManager : MonoBehaviour
         return query;
     }
 
-    bool CheckIfAreSameIdentity(Entity _entity1, Entity _entity2)
-    {
-        bool result = false;
-
-        if (_entity1.Name.Equals(_entity2.Name) &&
-            _entity1.Description.text.Equals(_entity2.Description.text) &&
-            _entity1.TypeOfEntity.Equals(_entity2.TypeOfEntity))
-            result = true;
-
-        return result;
-    }
-
-    IEnumerator UpdateEntityListCoroutine(List<GameObject> Items)
+    IEnumerator UpdateEntityListCoroutine(Inventory _inventory)
     {
         ResetList();
         yield return new WaitForSeconds(0.05f);
-        PopulateList(Items);
+        PopulateList(_inventory);
     }
 }

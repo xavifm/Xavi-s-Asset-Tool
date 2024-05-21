@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    [SerializeField] Entity CurrentHandItem;
+    public Entity CurrentHandItem;
+    public Entity.EntityType[] FastEquipableItems;
+    
     [SerializeField] Transform ThrowPivot;
     [SerializeField] float ThrowForce = 2;
+    
 
     const float THROW_MARGIN = 0.8f;
 

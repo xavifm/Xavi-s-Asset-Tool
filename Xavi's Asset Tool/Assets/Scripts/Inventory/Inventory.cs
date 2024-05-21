@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    [SerializeField] List<GameObject> Items;
+    public List<GameObject> Items;
     [SerializeField] List<Entity.EntityType> StorageTypesList;
 
     [SerializeField] EntitiesMenuManager MenuView;
@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour
             StartCoroutine(StoreCoroutine(_object));
 
             if(MenuView != null)
-                MenuView.UpdateEntityList(Items);
+                MenuView.UpdateEntityList(this);
         }
     }
 
@@ -38,8 +38,100 @@ public class Inventory : MonoBehaviour
             RetrieveLogic(entity);
 
             if (MenuView != null)
-                MenuView.UpdateEntityList(Items);
+                MenuView.UpdateEntityList(this);
         }
+    }
+
+    public Entity GetNextWeapon(Entity _currentObject, Entity.EntityType[] _availableTypes , float _direction)
+    {
+        Entity itemQuery = null;
+
+        int currentIndex = GetItemIndexFromInventory(_currentObject);
+
+        if (currentIndex == -1)
+            return GetAnyAvailableEntity(_availableTypes);
+
+        int nextIndex = currentIndex;
+
+        do
+        {
+            nextIndex += (int)_direction;
+
+            if (nextIndex < 0)
+                nextIndex = Items.Count - 1;
+            else if (nextIndex >= Items.Count)
+                nextIndex = 0;
+
+            Entity nextEntity = Items[nextIndex].GetComponent<Entity>();
+
+            if (nextEntity != null && System.Array.Exists(_availableTypes, type => type == nextEntity.TypeOfEntity))
+            {
+                itemQuery = nextEntity;
+                break;
+            }
+        } 
+        while (nextIndex != currentIndex);
+
+        return itemQuery;
+    }
+
+    public Entity GetItemByIdentity(Entity _object)
+    {
+        Entity itemQuery = null;
+
+        foreach (GameObject item in Items)
+        {
+            Entity entity = item.GetComponent<Entity>();
+            if (CheckIfAreSameIdentity(entity, _object))
+                itemQuery = entity;
+        }
+
+        return itemQuery;
+    }
+
+    public bool CheckIfAreSameIdentity(Entity _entity1, Entity _entity2)
+    {
+        bool result = false;
+
+        if (_entity1.Name.Equals(_entity2.Name) &&
+            _entity1.Description.text.Equals(_entity2.Description.text) &&
+            _entity1.TypeOfEntity.Equals(_entity2.TypeOfEntity))
+            result = true;
+
+        return result;
+    }
+
+    private Entity GetAnyAvailableEntity(Entity.EntityType[] _availableTypes)
+    {
+        Entity entityQuery = null;
+
+        foreach (GameObject item in Items)
+        {
+            Entity entity = item.GetComponent<Entity>();
+            if (System.Array.Exists(_availableTypes, type => type == entity.TypeOfEntity))
+            {
+                entityQuery = entity;
+                break;
+            }
+        }
+
+        return entityQuery;
+    }
+
+    private int GetItemIndexFromInventory(Entity _currentObject)
+    {
+        int currentIndex = -1;
+
+        for (int i = 0; i < Items.Count; i++)
+        {
+            if (Items[i].GetComponent<Entity>() == _currentObject)
+            {
+                currentIndex = i;
+                break;
+            }
+        }
+
+        return currentIndex;
     }
 
     private GameObject CheckIfItemExists(Entity _object)
