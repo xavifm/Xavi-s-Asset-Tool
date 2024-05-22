@@ -64,7 +64,9 @@ public class Inventory : MonoBehaviour
 
             Entity nextEntity = Items[nextIndex].GetComponent<Entity>();
 
-            if (nextEntity != null && System.Array.Exists(_availableTypes, type => type == nextEntity.TypeOfEntity))
+            if (nextEntity != null 
+                && (!CheckIfAreSameIdentity(_currentObject, nextEntity) || nextEntity.Equals(_currentObject)) 
+                && System.Array.Exists(_availableTypes, type => type == nextEntity.TypeOfEntity))
             {
                 itemQuery = nextEntity;
                 break;
