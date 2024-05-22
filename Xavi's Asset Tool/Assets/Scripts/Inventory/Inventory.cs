@@ -95,6 +95,9 @@ public class Inventory : MonoBehaviour
     {
         bool result = false;
 
+        if (_entity1 == null || _entity2 == null)
+            return result;
+
         if (_entity1.Name.Equals(_entity2.Name) &&
             _entity1.Description.text.Equals(_entity2.Description.text) &&
             _entity1.TypeOfEntity.Equals(_entity2.TypeOfEntity))

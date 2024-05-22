@@ -15,6 +15,8 @@ public class Hand : MonoBehaviour
 
     public void SetHandItem(Entity _item)
     {
+        if (_item != null && !_item.StoredItem)
+            return;
 
         if (CurrentHandItem != null)
             HideCurrentItem();
