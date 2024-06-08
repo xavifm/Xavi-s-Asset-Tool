@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
     public Rigidbody EntityRb;
     public Transform EntityTransform;
-    public Animator EntityAnimator;
+    public EntityAnimator AnimatorEntity;
     
     public EntityResize ResizeEntity;
     public float ResizeSpeed = 2;
@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour
             ResizeEntity.OriginalSize = EntityTransform.localScale;
     }
 
-    public virtual void AnimationStateMachine()
+    public virtual void AnimationLogic()
     {
 
     }
