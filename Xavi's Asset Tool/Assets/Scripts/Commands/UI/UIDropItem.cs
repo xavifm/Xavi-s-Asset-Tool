@@ -17,8 +17,13 @@ public class UIDropItem : UICommand
 
             Entity entityQuery = InventoryLogic.GetItemByIdentity(Legend.CurrentEntity);
 
-            if(entityQuery != null)
-                Legend.SwitchEntity(InventoryLogic.GetItemByIdentity(entityQuery));
+            if(entityQuery == null)
+            {
+                Legend.ResetLegend();
+                return;
+            }
+
+            Legend.SwitchEntity(InventoryLogic.GetItemByIdentity(entityQuery));
         }
     }
 }
