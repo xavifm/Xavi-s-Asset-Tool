@@ -12,9 +12,9 @@ public class PlayerMovementEntity : CreatureMovement
     [SerializeField] KeyCode SprintKey;
     [SerializeField] MenuManager MenuManager;
 
-    public override void AnimationStateMachine()
+    public override void AnimationLogic()
     {
-        base.AnimationStateMachine();
+        base.AnimationLogic();
     }
 
     public override void MovementLogic()

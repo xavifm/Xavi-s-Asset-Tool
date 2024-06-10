@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
     public Rigidbody EntityRb;
     public Transform EntityTransform;
-    public Animator EntityAnimator;
+    public EntityAnimator AnimatorEntity;
     
     public EntityResize ResizeEntity;
     public float ResizeSpeed = 2;
@@ -26,7 +26,7 @@ public class Movement : MonoBehaviour
             ResizeEntity.OriginalSize = EntityTransform.localScale;
     }
 
-    public virtual void AnimationStateMachine()
+    public virtual void AnimationLogic()
     {
 
     }
@@ -39,6 +39,12 @@ public class Movement : MonoBehaviour
     public virtual void RotationLogic()
     {
 
+    }
+
+    public virtual void Explode(Vector3 _direction, float _radius, float _force)
+    {
+        EntityRb.velocity = _direction.normalized * _force;
+        AnimatorEntity.SwitchAnimationState("EXPLODE");
     }
 
     public virtual void Resize(Vector3 _size, bool _lerp = false)

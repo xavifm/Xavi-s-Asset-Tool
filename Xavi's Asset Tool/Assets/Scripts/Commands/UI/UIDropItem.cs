@@ -14,6 +14,16 @@ public class UIDropItem : UICommand
         {
             PlayerHand.DropHandItem(Legend.CurrentEntity);
             InventoryLogic.RetrieveItem(Legend.CurrentEntity);
+
+            Entity entityQuery = InventoryLogic.GetItemByIdentity(Legend.CurrentEntity);
+
+            if(entityQuery == null)
+            {
+                Legend.ResetLegend();
+                return;
+            }
+
+            Legend.SwitchEntity(InventoryLogic.GetItemByIdentity(entityQuery));
         }
     }
 }

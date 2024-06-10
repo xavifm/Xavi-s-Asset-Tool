@@ -31,15 +31,18 @@ public class Player : CreatureEntity
         if (Input.GetKeyDown(PauseKey))
             MenuSystem.OpenMenu("PAUSE");
 
-        if (Input.GetKeyDown(ThrowKey))
+        if(!MenuSystem.HaveOpenMenu)
         {
-            Entity entityThrown = HandItem.CurrentHandItem;
-            HandItem.ThrowHandItem(InventoryLogic);
-            Entity nextEntity = InventoryLogic.GetItemByIdentity(entityThrown);
-            HandItem.SetHandItem(nextEntity);
-        }
+            if (Input.GetKeyDown(ThrowKey))
+            {
+                Entity entityThrown = HandItem.CurrentHandItem;
+                HandItem.ThrowHandItem(InventoryLogic);
+                Entity nextEntity = InventoryLogic.GetItemByIdentity(entityThrown);
+                HandItem.SetHandItem(nextEntity);
+            }
 
-        if (Input.GetKeyDown(ActionKey))
-            PickupEntity();
+            if (Input.GetKeyDown(ActionKey))
+                PickupEntity();
+        }
     }
 }

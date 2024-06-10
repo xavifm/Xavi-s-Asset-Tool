@@ -23,4 +23,10 @@ public class LegendDetail : MonoBehaviour
         if(CurrentEntity.Description != null)
             LegendText.text = CurrentEntity.Description.text;
     }
+
+    public void ResetLegend()
+    {
+        NameText.text = string.Empty;
+        LegendText.text = string.Empty;
+    }
 }
