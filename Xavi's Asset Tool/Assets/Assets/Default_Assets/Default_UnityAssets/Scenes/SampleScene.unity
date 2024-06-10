@@ -351,7 +351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 97160116}
   EntityTransform: {fileID: 0}
-  EntityAnimator: {fileID: 0}
+  AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 97160113}
   ResizeSpeed: 2
   CollisionTag: 
@@ -2406,7 +2406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 1215857627}
   EntityTransform: {fileID: 0}
-  EntityAnimator: {fileID: 0}
+  AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 1215857624}
   ResizeSpeed: 2
   CollisionTag: 
@@ -3317,7 +3317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 1623602172}
   EntityTransform: {fileID: 0}
-  EntityAnimator: {fileID: 0}
+  AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 1623602178}
   ResizeSpeed: 2
   CollisionTag: 
@@ -3499,7 +3499,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 1682994629}
   EntityTransform: {fileID: 0}
-  EntityAnimator: {fileID: 0}
+  AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 1682994626}
   ResizeSpeed: 2
   CollisionTag: 
@@ -4321,6 +4321,7 @@ GameObject:
   - component: {fileID: 2113216382}
   - component: {fileID: 2113216381}
   - component: {fileID: 2113216383}
+  - component: {fileID: 2113216384}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4403,7 +4404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 2113216377}
   EntityTransform: {fileID: 0}
-  EntityAnimator: {fileID: 0}
+  AnimatorEntity: {fileID: 2113216384}
   ResizeEntity: {fileID: 2113216382}
   ResizeSpeed: 2
   CollisionTag: 
@@ -4467,6 +4468,20 @@ MonoBehaviour:
     value: Inventory
     opened: 0
   HaveOpenMenu: 0
+--- !u!114 &2113216384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113216375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf345986a641ec48a001b0ada1020dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animations: []
+  AnimatorEntity: {fileID: 0}
 --- !u!1 &2130700853
 GameObject:
   m_ObjectHideFlags: 0

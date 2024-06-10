@@ -41,6 +41,12 @@ public class Movement : MonoBehaviour
 
     }
 
+    public virtual void Explode(Vector3 _direction, float _radius, float _force)
+    {
+        EntityRb.velocity = _direction.normalized * _force;
+        AnimatorEntity.SwitchAnimationState("EXPLODE");
+    }
+
     public virtual void Resize(Vector3 _size, bool _lerp = false)
     {
         if (ResizeEntity != null)

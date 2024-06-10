@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class EntityAnimator : MonoBehaviour
 {
-    List<AnimationList> Animations;
-    Animator AnimatorEntity;
+    public List<AnimationList> Animations;
+    public Animator AnimatorEntity;
 
     public void SwitchAnimationState(string _state)
     {
 
     }
 
-    void DisableAllAnimations()
+    public void DisableAllAnimations()
     {
 
     }
@@ -23,8 +23,9 @@ public class EntityAnimator : MonoBehaviour
     }
 }
 
-class AnimationList 
+[System.Serializable]
+public class AnimationList 
 {
-    string key; 
-    bool enabled;
+    public string key; 
+    public bool enabled;
 }
