@@ -353,6 +353,7 @@ MonoBehaviour:
   EntityTransform: {fileID: 0}
   AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 97160113}
+  FragmentEntity: {fileID: 0}
   ResizeSpeed: 2
   CollisionTag: 
   Colliding: 0
@@ -375,6 +376,8 @@ MonoBehaviour:
   Description: {fileID: 97160111}
   MovementLogic: {fileID: 97160114}
   StoredItem: 0
+  Explode: 0
+  Destroy: 0
 --- !u!54 &97160116
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2408,6 +2411,7 @@ MonoBehaviour:
   EntityTransform: {fileID: 0}
   AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 1215857624}
+  FragmentEntity: {fileID: 0}
   ResizeSpeed: 2
   CollisionTag: 
   Colliding: 0
@@ -2430,6 +2434,8 @@ MonoBehaviour:
   Description: {fileID: 1215857622}
   MovementLogic: {fileID: 1215857625}
   StoredItem: 0
+  Explode: 0
+  Destroy: 0
 --- !u!54 &1215857627
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2685,6 +2691,11 @@ MonoBehaviour:
   Legend: {fileID: 1799170090}
   InventoryLogic: {fileID: 2113216381}
   PlayerHand: {fileID: 533688154}
+--- !u!1 &1313706200 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 917366013572877871, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}
+  m_PrefabInstance: {fileID: 6651660497904813556}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1355981607
 GameObject:
   m_ObjectHideFlags: 0
@@ -3224,6 +3235,8 @@ MonoBehaviour:
   Description: {fileID: 1623602179}
   MovementLogic: {fileID: 1623602177}
   StoredItem: 0
+  Explode: 0
+  Destroy: 0
 --- !u!54 &1623602172
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3319,6 +3332,7 @@ MonoBehaviour:
   EntityTransform: {fileID: 0}
   AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 1623602178}
+  FragmentEntity: {fileID: 0}
   ResizeSpeed: 2
   CollisionTag: 
   Colliding: 0
@@ -3420,6 +3434,10 @@ GameObject:
   - component: {fileID: 1682994626}
   - component: {fileID: 1682994625}
   - component: {fileID: 1682994624}
+  - component: {fileID: 1682994636}
+  - component: {fileID: 1682994635}
+  - component: {fileID: 1682994634}
+  - component: {fileID: 1682994637}
   m_Layer: 0
   m_Name: Prop_Cube_1
   m_TagString: Untagged
@@ -3501,6 +3519,7 @@ MonoBehaviour:
   EntityTransform: {fileID: 0}
   AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 1682994626}
+  FragmentEntity: {fileID: 1682994636}
   ResizeSpeed: 2
   CollisionTag: 
   Colliding: 0
@@ -3523,6 +3542,8 @@ MonoBehaviour:
   Description: {fileID: 1682994624}
   MovementLogic: {fileID: 1682994627}
   StoredItem: 0
+  Explode: 0
+  Destroy: 0
 --- !u!54 &1682994629
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3622,6 +3643,98 @@ RectTransform:
   m_AnchoredPosition: {x: 6.41, y: 0.5083564}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1682994634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682994623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d27bdb455b9c9e43ab54cf38b0eb5df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ForceThreshold: 0
+  ForceFalloffRadius: 1
+  AdjustForKinematic: 1
+  ConsistentImpactForce: 1
+  CollidableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  OutputDebugCollisionInfo: 0
+--- !u!114 &1682994635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682994623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5711ac80149b2e449032315bef115b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InsideMaterial: {fileID: 0}
+  OptimizeMaterialUsage: 1
+  FractureTemplate: {fileID: 100000, guid: bb85f1155c6bfa044bd2c250028a85b8, type: 3}
+  PiecesParent: {fileID: 0}
+  FractureType: 0
+  SlicePlanes: []
+  NumFracturePieces: 5
+  NumIterations: 2
+  EvenlySizedPieces: 1
+  NumGenerations: 1
+  FractureRadius: -3.4028235e+38
+  FractureSize:
+    Space: 0
+    Value: 0
+  UVScale: 1
+  UVBounds:
+    StartUV: {x: 0, y: 0}
+    EndUV: {x: 1, y: 1}
+  DistributeMass: 1
+  SeparateDisjointPieces: 1
+  VertexMergingPolicy: 0
+  RandomSeed: 0
+  OnFractureCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+  _meshValidity: 1
+  SkipMeshCleaning: 0
+  GeneratedPieces: {fileID: 1313706200}
+  EntireMeshBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.25, y: 0.25, z: 0.25}
+--- !u!114 &1682994636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682994623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671bdf9c8a24d7d41b0f29c12876ae8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enabled: 1
+  Geometry:
+  - {fileID: 1682994635}
+--- !u!114 &1682994637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682994623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cd6f1f120f81214d9aae45b84134d78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Force: 0
+  Radius: 0
 --- !u!1 &1716916260
 GameObject:
   m_ObjectHideFlags: 0
@@ -4585,6 +4698,7 @@ MonoBehaviour:
   EntityTransform: {fileID: 0}
   AnimatorEntity: {fileID: 2113216384}
   ResizeEntity: {fileID: 2113216382}
+  FragmentEntity: {fileID: 0}
   ResizeSpeed: 2
   CollisionTag: 
   Colliding: 0
@@ -4874,3 +4988,60 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
+--- !u!1001 &6651660497904813556
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 917366013572877871, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}
+      propertyPath: m_Name
+      value: Prop_Cube_1 - Fracture Root
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711022297360180705, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711022297360180705, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711022297360180705, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5083564
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711022297360180705, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.7793111
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711022297360180705, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711022297360180705, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711022297360180705, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711022297360180705, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711022297360180705, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711022297360180705, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5711022297360180705, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6a2b54a425ada014094a38af1cffbbc0, type: 3}

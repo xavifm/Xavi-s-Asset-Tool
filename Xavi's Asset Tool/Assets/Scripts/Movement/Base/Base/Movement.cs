@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
 
     [HideInInspector] public string CollisionTag;
     [HideInInspector] public bool Colliding;
+    protected Collision ColliderEntity;
 
     private RigidbodyConstraints OriginalConstraints;
     [SerializeField] Collider[] ColliderList;
@@ -56,7 +57,7 @@ public class Movement : MonoBehaviour
         EntityRb.velocity = _direction.normalized * _force;
 
         if (FragmentEntity != null)
-            FragmentEntity.Explode();
+            FragmentEntity.Explode(_radius, _force);
     }
 
     public virtual void Resize(Vector3 _size, bool _lerp = false)
@@ -126,13 +127,15 @@ public class Movement : MonoBehaviour
     private void OnCollisionStay(Collision collision)
     {
         CollisionTag = collision.gameObject.tag;
+        ColliderEntity = collision;
         Colliding = true;
     }
 
     private void OnCollisionExit(Collision collision)
     {
         CollisionTag = "";
-        Colliding = true;
+        ColliderEntity = null;
+        Colliding = false;
     }
 
     IEnumerator DestroyCorroutine(float _timer)
