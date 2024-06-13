@@ -114,13 +114,13 @@ namespace DinoFracture
             }
         }
 
-        private void OnCollisionEnter(Collision col)
-        {
-            if (_fractureGeometry != null && !_fractureGeometry.IsProcessingFracture)
-            {
-                GatherCollisionInfo(col);
-            }
-        }
+        //private void OnCollisionEnter(Collision col)
+        //{
+        //    if (_fractureGeometry != null && !_fractureGeometry.IsProcessingFracture)
+        //    {
+        //        GatherCollisionInfo(col);
+        //    }
+        //}
 
         public void FragmentByColision(Collision col)
         {
