@@ -122,6 +122,14 @@ namespace DinoFracture
             }
         }
 
+        public void FragmentByColision(Collision col)
+        {
+            if (_fractureGeometry != null && !_fractureGeometry.IsProcessingFracture)
+            {
+                GatherCollisionInfo(col);
+            }
+        }
+
         internal bool GatherCollisionInfo(Collision col)
         {
             if (!_fireFracture && col.contactCount > 0 && (CollidableLayers.value & (1 << col.gameObject.layer)) != 0)
