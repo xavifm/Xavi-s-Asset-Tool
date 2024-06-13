@@ -9,10 +9,12 @@ public class Movement : MonoBehaviour
     public EntityAnimator AnimatorEntity;
     
     public EntityResize ResizeEntity;
+    public EntityFragmentator FragmentEntity;
     public float ResizeSpeed = 2;
 
     [HideInInspector] public string CollisionTag;
     [HideInInspector] public bool Colliding;
+    protected Collision ColliderEntity;
 
     private RigidbodyConstraints OriginalConstraints;
     [SerializeField] Collider[] ColliderList;
@@ -41,10 +43,21 @@ public class Movement : MonoBehaviour
 
     }
 
+    public virtual void Destroy(float _timerRemove, bool _fragmentate = true)
+    {
+        if(_timerRemove > 0)
+            StartCoroutine(DestroyCorroutine(_timerRemove));
+
+        if (FragmentEntity != null && _fragmentate)
+            FragmentEntity.Fragment();
+    }
+
     public virtual void Explode(Vector3 _direction, float _radius, float _force)
     {
         EntityRb.velocity = _direction.normalized * _force;
-        AnimatorEntity.SwitchAnimationState("EXPLODE");
+
+        if (FragmentEntity != null)
+            FragmentEntity.Explode(_radius, _force);
     }
 
     public virtual void Resize(Vector3 _size, bool _lerp = false)
@@ -114,12 +127,21 @@ public class Movement : MonoBehaviour
     private void OnCollisionStay(Collision collision)
     {
         CollisionTag = collision.gameObject.tag;
+        ColliderEntity = collision;
         Colliding = true;
     }
 
     private void OnCollisionExit(Collision collision)
     {
         CollisionTag = "";
-        Colliding = true;
+        ColliderEntity = null;
+        Colliding = false;
+    }
+
+    IEnumerator DestroyCorroutine(float _timer)
+    {
+        yield return new WaitForSeconds(_timer);
+
+        Destroy(gameObject);
     }
 }
