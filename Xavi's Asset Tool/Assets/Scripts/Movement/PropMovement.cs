@@ -45,15 +45,4 @@ public class PropMovement : Movement
             Destroy(DestroyTime);
     }
 
-    private Entity GetObjectEntity(Transform _object)
-    {
-        Entity entityQuery = null;
-
-        if (_object.parent != null)
-            entityQuery = _object.parent.GetComponent<Entity>();
-        else
-            entityQuery = _object.GetComponent<Entity>();
-
-        return entityQuery;
-    }
 }

@@ -115,6 +115,18 @@ public class Movement : MonoBehaviour
         return false;
     }
 
+    protected Entity GetObjectEntity(Transform _object)
+    {
+        Entity entityQuery = null;
+
+        if (_object.parent != null)
+            entityQuery = _object.parent.GetComponent<Entity>();
+        else
+            entityQuery = _object.GetComponent<Entity>();
+
+        return entityQuery;
+    }
+
     private void DisableAllCollisions()
     {
         foreach(Collider collision in ColliderList)
