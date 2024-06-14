@@ -169,6 +169,7 @@ public class Inventory : MonoBehaviour
             yield return null;
         }
 
+        _object.MovementLogic.ResetCollisionInfo();
         _object.gameObject.SetActive(false);
     } 
 

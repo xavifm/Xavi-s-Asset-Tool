@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Entity : MonoBehaviour
 {
-    public enum EntityType { CREATURE_PLAYER, CREATURE_NPC, WORLD_PROP, WEAPON }
+    public enum EntityType { DEFAULT, CREATURE_PLAYER, CREATURE_NPC, WORLD_PROP, WEAPON }
 
     public EntityType TypeOfEntity;
     public string Name;

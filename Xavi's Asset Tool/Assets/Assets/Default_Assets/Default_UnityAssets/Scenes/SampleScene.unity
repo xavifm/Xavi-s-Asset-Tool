@@ -371,11 +371,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b673e26340863e45847f8873e9b5eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypeOfEntity: 2
+  TypeOfEntity: 3
   Name: Cube
   Description: {fileID: 97160111}
   MovementLogic: {fileID: 97160114}
   StoredItem: 0
+  Enabled: 0
   Explode: 0
   Destroy: 0
 --- !u!54 &97160116
@@ -1149,7 +1150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentHandItem: {fileID: 0}
-  FastEquipableItems: 02000000
+  FastEquipableItems: 03000000
   ThrowPivot: {fileID: 502998237}
   ThrowForce: 10
 --- !u!1 &622683188
@@ -2429,11 +2430,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b673e26340863e45847f8873e9b5eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypeOfEntity: 2
+  TypeOfEntity: 3
   Name: Cube_2
   Description: {fileID: 1215857622}
   MovementLogic: {fileID: 1215857625}
   StoredItem: 0
+  Enabled: 0
   Explode: 0
   Destroy: 0
 --- !u!54 &1215857627
@@ -3235,6 +3237,7 @@ MonoBehaviour:
   Description: {fileID: 1623602179}
   MovementLogic: {fileID: 1623602177}
   StoredItem: 0
+  Enabled: 0
   Explode: 0
   Destroy: 0
 --- !u!54 &1623602172
@@ -3430,11 +3433,11 @@ GameObject:
   - component: {fileID: 1682994630}
   - component: {fileID: 1682994629}
   - component: {fileID: 1682994628}
-  - component: {fileID: 1682994627}
   - component: {fileID: 1682994626}
   - component: {fileID: 1682994625}
   - component: {fileID: 1682994624}
   - component: {fileID: 1682994636}
+  - component: {fileID: 1682994638}
   - component: {fileID: 1682994635}
   - component: {fileID: 1682994634}
   - component: {fileID: 1682994637}
@@ -3503,28 +3506,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OriginalSize: {x: 0, y: 0, z: 0}
---- !u!114 &1682994627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1682994623}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95553c004dc8f204eb83e4542b95c7d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EntityRb: {fileID: 1682994629}
-  EntityTransform: {fileID: 0}
-  AnimatorEntity: {fileID: 0}
-  ResizeEntity: {fileID: 1682994626}
-  FragmentEntity: {fileID: 1682994636}
-  ResizeSpeed: 2
-  CollisionTag: 
-  Colliding: 0
-  ColliderList:
-  - {fileID: 1682994630}
 --- !u!114 &1682994628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3537,11 +3518,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b673e26340863e45847f8873e9b5eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypeOfEntity: 2
+  TypeOfEntity: 3
   Name: Cube
   Description: {fileID: 1682994624}
-  MovementLogic: {fileID: 1682994627}
+  MovementLogic: {fileID: 1682994638}
   StoredItem: 0
+  Enabled: 1
   Explode: 0
   Destroy: 0
 --- !u!54 &1682994629
@@ -3631,7 +3613,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1682994623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 1.7793111}
+  m_LocalPosition: {x: 0, y: 0, z: -0.102}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3640,7 +3622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6.41, y: 0.5083564}
+  m_AnchoredPosition: {x: 8.822, y: 0.5083564}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1682994634
@@ -3735,6 +3717,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Force: 0
   Radius: 0
+--- !u!114 &1682994638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682994623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f15075727c46a4ea22067fc55d9d8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EntityRb: {fileID: 1682994629}
+  EntityTransform: {fileID: 1682994633}
+  AnimatorEntity: {fileID: 0}
+  ResizeEntity: {fileID: 1682994626}
+  FragmentEntity: {fileID: 1682994636}
+  ResizeSpeed: 2
+  CollisionTag: 
+  Colliding: 0
+  ColliderList:
+  - {fileID: 1682994630}
+  Breakable: 1
+  BreakVelocity: 5
 --- !u!1 &1716916260
 GameObject:
   m_ObjectHideFlags: 0
@@ -4670,7 +4676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdcdc1fa0cfb2fd448fc8e4e22188b56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypeOfEntity: 0
+  TypeOfEntity: 1
   Name: 
   Description: {fileID: 0}
   MovementLogic: {fileID: 2113216380}
@@ -4728,7 +4734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Items: []
-  StorageTypesList: 0200000003000000
+  StorageTypesList: 0300000004000000
   MenuView: {fileID: 1168440659}
 --- !u!114 &2113216382
 MonoBehaviour:

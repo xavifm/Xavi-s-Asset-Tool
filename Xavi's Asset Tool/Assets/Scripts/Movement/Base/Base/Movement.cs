@@ -100,6 +100,13 @@ public class Movement : MonoBehaviour
         DisableAllCollisions();
     }
 
+    public void ResetCollisionInfo()
+    {
+        CollisionTag = "";
+        ColliderEntity = null;
+        Colliding = false;
+    }
+
     protected bool CheckCollisionWithTag(string _tag)
     {
         if(!CollisionTag.Equals(string.Empty) && Colliding && CollisionTag.Equals(_tag))
@@ -133,9 +140,7 @@ public class Movement : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        CollisionTag = "";
-        ColliderEntity = null;
-        Colliding = false;
+        ResetCollisionInfo();
     }
 
     IEnumerator DestroyCorroutine(float _timer)
