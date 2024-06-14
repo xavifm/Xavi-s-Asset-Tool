@@ -1152,7 +1152,7 @@ MonoBehaviour:
   CurrentHandItem: {fileID: 0}
   FastEquipableItems: 03000000
   ThrowPivot: {fileID: 502998237}
-  ThrowForce: 10
+  ThrowForce: 20
 --- !u!1 &622683188
 GameObject:
   m_ObjectHideFlags: 0
@@ -3232,7 +3232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b673e26340863e45847f8873e9b5eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TypeOfEntity: 2
+  TypeOfEntity: 3
   Name: Cube
   Description: {fileID: 1623602179}
   MovementLogic: {fileID: 1623602177}
@@ -3741,6 +3741,8 @@ MonoBehaviour:
   - {fileID: 1682994630}
   Breakable: 1
   BreakVelocity: 5
+  BreakType: 1
+  DestroyTime: 0
 --- !u!1 &1716916260
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,27 +4,45 @@ using UnityEngine;
 
 public class PropMovement : Movement
 {
+    enum BreakStyle { BREAK, EXPLOSION }
     [SerializeField] bool Breakable;
     [SerializeField] float BreakVelocity;
+    [SerializeField] BreakStyle BreakType;
+    [SerializeField] float DestroyTime;
 
     public override void MovementLogic()
     {
-        if(Breakable)
+        DestroyLogic();
+    }
+
+    private void DestroyLogic()
+    {
+        if (Breakable)
         {
-            if(EntityRb.velocity.magnitude >= BreakVelocity && ColliderEntity != null)
+            if (EntityRb.velocity.magnitude >= BreakVelocity && ColliderEntity != null)
             {
                 Entity.EntityType typeOfEntity = Entity.EntityType.DEFAULT;
                 Entity entityQuery = GetObjectEntity(ColliderEntity.transform);
                 if (entityQuery != null)
                     typeOfEntity = entityQuery.TypeOfEntity;
-                
-                if(typeOfEntity != Entity.EntityType.CREATURE_PLAYER)
+
+                if (typeOfEntity != Entity.EntityType.CREATURE_PLAYER)
                 {
-                    float velocityMagnitude = EntityRb.velocity.magnitude;
-                    Explode(Vector3.zero, velocityMagnitude / 2, velocityMagnitude);
+                    ExecuteDestruction(BreakType);
                 }
             }
         }
+    }
+
+    private void ExecuteDestruction(BreakStyle _style)
+    {
+        float velocityMagnitude = EntityRb.velocity.magnitude;
+
+        if (BreakType.Equals(BreakStyle.EXPLOSION))
+            Explode(EntityRb.velocity, velocityMagnitude, velocityMagnitude);
+
+        if (BreakType.Equals(BreakStyle.BREAK))
+            Destroy(DestroyTime);
     }
 
     private Entity GetObjectEntity(Transform _object)
