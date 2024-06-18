@@ -24,7 +24,6 @@ public class PropMovement : Movement
             {
                 Entity.EntityType typeOfEntity = Entity.EntityType.DEFAULT;
                 Entity entityQuery = GetObjectEntity(ColliderEntity.transform);
-
                 if (entityQuery != null)
                 {
                     typeOfEntity = entityQuery.TypeOfEntity;
@@ -37,7 +36,6 @@ public class PropMovement : Movement
                     }
 
                 }
-
             }
         }
     }
