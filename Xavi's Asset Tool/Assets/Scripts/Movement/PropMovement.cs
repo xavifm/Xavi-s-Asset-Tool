@@ -26,18 +26,16 @@ public class PropMovement : Movement
                 Entity entityQuery = GetObjectEntity(ColliderEntity.transform);
 
                 if (entityQuery != null)
-                {
                     typeOfEntity = entityQuery.TypeOfEntity;
 
-                    if(typeOfEntity != Entity.EntityType.CREATURE_PLAYER)
-                    {
-                        if (EntityRb.velocity.magnitude >= BreakVelocity 
-                            || (entityQuery.MovementLogic.EntityRb.velocity.magnitude >= BreakVelocity && BreakType.Equals(BreakStyle.WALL_BREAK)))
-                            ExecuteDestruction(BreakType);
-                    }
-
+                if (typeOfEntity != Entity.EntityType.CREATURE_PLAYER)
+                {
+                    if (EntityRb.velocity.magnitude >= BreakVelocity
+                        || (entityQuery != null 
+                            && entityQuery.MovementLogic.EntityRb.velocity.magnitude >= BreakVelocity 
+                            && BreakType.Equals(BreakStyle.WALL_BREAK)))
+                        ExecuteDestruction(BreakType);
                 }
-
             }
         }
     }
