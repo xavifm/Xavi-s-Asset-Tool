@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
 
     [HideInInspector] public string CollisionTag;
     [HideInInspector] public bool Colliding;
-    public Transform ColliderEntity;
+    protected Transform ColliderEntity;
 
     private RigidbodyConstraints OriginalConstraints;
     [SerializeField] Collider[] ColliderList;
