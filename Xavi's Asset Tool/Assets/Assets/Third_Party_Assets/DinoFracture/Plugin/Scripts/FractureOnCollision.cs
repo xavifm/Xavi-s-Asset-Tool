@@ -204,15 +204,16 @@ namespace DinoFracture
                     }
                 }
 #endif
+                doFracture = true;
 
-                if (forceMag >= ForceThreshold)
-                {
-                    doFracture = true;
-                }
-                else
-                {
-                    _impactMass = 0.0f;
-                }
+                //if (forceMag >= ForceThreshold)
+                //{
+                //    doFracture = true;
+                //}
+                //else
+                //{
+                //    _impactMass = 0.0f;
+                //}
 
                 if (_fractureGeometry != null)
                 {
@@ -223,7 +224,8 @@ namespace DinoFracture
                 return doFracture;
             }
 
-            return false;
+            //return false;
+            return true;
         }
 
         private void Update()

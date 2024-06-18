@@ -14,7 +14,7 @@ public class Movement : MonoBehaviour
 
     [HideInInspector] public string CollisionTag;
     [HideInInspector] public bool Colliding;
-    protected Collision ColliderEntity;
+    public Transform ColliderEntity;
 
     private RigidbodyConstraints OriginalConstraints;
     [SerializeField] Collider[] ColliderList;
@@ -143,10 +143,10 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void OnCollisionStay(Collision collision)
+    public virtual void OnCollisionStay(Collision collision)
     {
         CollisionTag = collision.gameObject.tag;
-        ColliderEntity = collision;
+        ColliderEntity = collision.transform;
         Colliding = true;
     }
 

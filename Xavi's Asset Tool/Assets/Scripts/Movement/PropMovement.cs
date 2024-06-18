@@ -16,31 +16,30 @@ public class PropMovement : Movement
         DestroyLogic();
     }
 
-    private void DestroyLogic()
+    private void DestroyLogic(Collision _collision = null)
     {
         if (Breakable)
         {
             if (ColliderEntity != null)
             {
                 Entity.EntityType typeOfEntity = Entity.EntityType.DEFAULT;
-                Entity entityQuery = GetObjectEntity(ColliderEntity.transform);
+                Entity entityQuery = GetObjectEntity(ColliderEntity);
                 if (entityQuery != null)
-                {
                     typeOfEntity = entityQuery.TypeOfEntity;
 
-                    if(typeOfEntity != Entity.EntityType.CREATURE_PLAYER)
-                    {
-                        if (EntityRb.velocity.magnitude >= BreakVelocity 
-                            || (entityQuery.MovementLogic.EntityRb.velocity.magnitude >= BreakVelocity && BreakType.Equals(BreakStyle.WALL_BREAK)))
-                            ExecuteDestruction(BreakType);
-                    }
-
+                if (typeOfEntity != Entity.EntityType.CREATURE_PLAYER)
+                {
+                    if (EntityRb.velocity.magnitude >= BreakVelocity
+                        || (entityQuery != null
+                            && entityQuery.MovementLogic.EntityRb.velocity.magnitude >= BreakVelocity
+                            && BreakType.Equals(BreakStyle.WALL_BREAK)))
+                        ExecuteDestruction(BreakType, _collision);
                 }
             }
         }
     }
 
-    private void ExecuteDestruction(BreakStyle _style)
+    private void ExecuteDestruction(BreakStyle _style, Collision _collision = null)
     {
         float velocityMagnitude = EntityRb.velocity.magnitude;
 
@@ -50,9 +49,15 @@ public class PropMovement : Movement
         if (BreakType.Equals(BreakStyle.BREAK))
             Destroy(DestroyTime);
 
-        if (BreakType.Equals(BreakStyle.WALL_BREAK))
-            FragmentEntity.FragmentByCollision(ColliderEntity);
+        if (_collision != null && BreakType.Equals(BreakStyle.WALL_BREAK))
+            FragmentEntity.FragmentByCollision(_collision);
             
+    }
+
+    public override void OnCollisionStay(Collision collision)
+    {
+        base.OnCollisionStay(collision);
+        DestroyLogic(collision);
     }
 
 }
