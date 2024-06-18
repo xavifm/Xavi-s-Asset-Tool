@@ -24,13 +24,14 @@ public class PropMovement : Movement
             {
                 Entity.EntityType typeOfEntity = Entity.EntityType.DEFAULT;
                 Entity entityQuery = GetObjectEntity(ColliderEntity.transform);
+                Debug.Log(entityQuery.gameObject.name + " is -> " + gameObject.name);
 
                 if (entityQuery != null)
                     typeOfEntity = entityQuery.TypeOfEntity;
 
                 if (typeOfEntity != Entity.EntityType.CREATURE_PLAYER)
                 {
-                    if (EntityRb.velocity.magnitude >= BreakVelocity
+                    if ((EntityRb.velocity.magnitude >= BreakVelocity && !BreakType.Equals(BreakStyle.WALL_BREAK))
                         || (entityQuery != null 
                             && entityQuery.MovementLogic.EntityRb.velocity.magnitude >= BreakVelocity 
                             && BreakType.Equals(BreakStyle.WALL_BREAK)))
@@ -52,7 +53,7 @@ public class PropMovement : Movement
 
         if (BreakType.Equals(BreakStyle.WALL_BREAK))
             FragmentEntity.FragmentByCollision(ColliderEntity);
-            
+
     }
 
 }

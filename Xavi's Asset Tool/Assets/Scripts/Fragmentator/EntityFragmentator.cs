@@ -15,6 +15,8 @@ public class EntityFragmentator : MonoBehaviour
         if (!enabled)
             return;
 
+        Debug.Log("ENTERS");
+
         foreach(FractureGeometry geometry in Geometry)
         {
             geometry.gameObject.GetComponent<FractureOnCollision>().FragmentByColision(_collision);
