@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PropMovement : Movement
 {
-    enum BreakStyle { BREAK, EXPLOSION }
+    enum BreakStyle { BREAK, EXPLOSION, WALL_BREAK }
     [SerializeField] bool Breakable;
     [SerializeField] float BreakVelocity;
     [SerializeField] BreakStyle BreakType;
@@ -12,6 +12,7 @@ public class PropMovement : Movement
 
     public override void MovementLogic()
     {
+        base.MovementLogic();
         DestroyLogic();
     }
 
@@ -19,16 +20,21 @@ public class PropMovement : Movement
     {
         if (Breakable)
         {
-            if (EntityRb.velocity.magnitude >= BreakVelocity && ColliderEntity != null)
+            if (ColliderEntity != null)
             {
                 Entity.EntityType typeOfEntity = Entity.EntityType.DEFAULT;
                 Entity entityQuery = GetObjectEntity(ColliderEntity.transform);
                 if (entityQuery != null)
+                {
                     typeOfEntity = entityQuery.TypeOfEntity;
 
-                if (typeOfEntity != Entity.EntityType.CREATURE_PLAYER)
-                {
-                    ExecuteDestruction(BreakType);
+                    if(typeOfEntity != Entity.EntityType.CREATURE_PLAYER)
+                    {
+                        if (EntityRb.velocity.magnitude >= BreakVelocity 
+                            || (entityQuery.MovementLogic.EntityRb.velocity.magnitude >= BreakVelocity && BreakType.Equals(BreakStyle.WALL_BREAK)))
+                            ExecuteDestruction(BreakType);
+                    }
+
                 }
             }
         }
@@ -43,6 +49,10 @@ public class PropMovement : Movement
 
         if (BreakType.Equals(BreakStyle.BREAK))
             Destroy(DestroyTime);
+
+        if (BreakType.Equals(BreakStyle.WALL_BREAK))
+            FragmentEntity.FragmentByCollision(ColliderEntity);
+            
     }
 
 }
