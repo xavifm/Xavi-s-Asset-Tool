@@ -26,4 +26,4 @@ This project is available under a Creative Commons Non-Commercial license. This 
 To get started with Xavi's Asset Tool, clone this repository and import it into your Unity project:
 
 ```bash
-git clone https://github.com/your-username/xavis-asset-tool.git
+git clone https://github.com/xavifm/Xavi-s-Asset-Tool/
