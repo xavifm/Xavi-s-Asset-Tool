@@ -7,6 +7,7 @@ public class PropMovement : Movement
     enum BreakStyle { BREAK, EXPLOSION, WALL_BREAK }
     [SerializeField] bool Breakable;
     [SerializeField] float BreakVelocity;
+    [SerializeField] float ExplosionRadius;
     [SerializeField] BreakStyle BreakType;
     [SerializeField] float DestroyTime;
 
@@ -44,7 +45,7 @@ public class PropMovement : Movement
         float velocityMagnitude = EntityRb.velocity.magnitude;
 
         if (BreakType.Equals(BreakStyle.EXPLOSION))
-            Explode(EntityRb.velocity, velocityMagnitude, velocityMagnitude);
+            Explode(EntityRb.velocity, ExplosionRadius, velocityMagnitude);
 
         if (BreakType.Equals(BreakStyle.BREAK))
             Destroy(DestroyTime);

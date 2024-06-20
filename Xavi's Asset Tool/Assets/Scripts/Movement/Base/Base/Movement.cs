@@ -14,17 +14,21 @@ public class Movement : MonoBehaviour
 
     [HideInInspector] public string CollisionTag;
     [HideInInspector] public bool Colliding;
+
     protected Transform ColliderEntity;
 
     private RigidbodyConstraints OriginalConstraints;
     [SerializeField] Collider[] ColliderList;
+    [SerializeField] EntityManager EntityManager;
 
     void Start()
     {
         EntityTransform = transform;
         OriginalConstraints = EntityRb.constraints;
 
-        if(ResizeEntity != null)
+        EntityManager = GameObject.FindObjectOfType<EntityManager>();
+
+        if (ResizeEntity != null)
             ResizeEntity.OriginalSize = EntityTransform.localScale;
     }
 
@@ -55,6 +59,9 @@ public class Movement : MonoBehaviour
     public virtual void Explode(Vector3 _direction, float _radius, float _force)
     {
         EntityRb.velocity = _direction.normalized * _force;
+
+        if (EntityManager != null)
+            ImplodeAround(_radius, _force);
 
         if (FragmentEntity != null)
             FragmentEntity.Explode(_radius, _force);
@@ -140,6 +147,17 @@ public class Movement : MonoBehaviour
         foreach (Collider collision in ColliderList)
         {
             collision.enabled = true;
+        }
+    }
+
+    private void ImplodeAround(float _radius, float _force)
+    {
+        List<Entity> closeEntities = EntityManager.GetCloseEntities(GetComponent<Entity>(), _radius);
+
+        foreach (Entity entity in closeEntities)
+        {
+            Vector3 implodeVector = entity.transform.position - transform.position;
+            entity.MovementLogic.EntityRb.velocity = implodeVector * _force;
         }
     }
 
