@@ -4693,7 +4693,7 @@ MonoBehaviour:
   EntityManager: {fileID: 0}
   Breakable: 1
   BreakVelocity: 5
-  ExplosionRadius: 10
+  ExplosionRadius: 2
   BreakType: 1
   DestroyTime: 0
 --- !u!1 &1716916260
