@@ -4,13 +4,9 @@ using UnityEngine;
 
 public class NpcMovementEntity : CreatureMovement
 {
-    void Start()
+    public override void AnimationLogic()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        AnimatorEntity.SwitchAnimationState("Walk");
+        AnimatorEntity.SwitchCharacterSpeedBlend(1);
     }
 }
