@@ -7,6 +7,6 @@ public class NpcMovementEntity : CreatureMovement
     public override void AnimationLogic()
     {
         AnimatorEntity.SwitchAnimationState("Walk");
-        AnimatorEntity.SwitchCharacterSpeedBlend(1);
+        AnimatorEntity.SwitchCharacterSpeedBlend(EntityRb.velocity.magnitude);
     }
 }
