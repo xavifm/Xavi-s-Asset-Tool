@@ -21,6 +21,9 @@ public class NpcMovementEntity : CreatureMovement
 
     public virtual void InitializeList()
     {
+        CurrentAnimation = AnimationStates.WALK;
+        Animations = new Dictionary<AnimationStates, string>();
+
         Animations.Add(AnimationStates.WALK, "Walk");
         Animations.Add(AnimationStates.DAMAGE, "Damaged");
         Animations.Add(AnimationStates.DEAD, "Dead");
