@@ -25,13 +25,15 @@ public class NpcMExample : NpcMovementEntity
     {
         base.RotationLogic();
 
-        Vector3 dir = (Player.position - transform.position).normalized;
-        Vector3 forward = Vector3.forward;
-        Vector3 axis = Vector3.Cross(forward, dir).normalized;
-        float dot = Vector3.Dot(forward, dir);
-        float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-        Quaternion rotation = Quaternion.AngleAxis(angle, axis);
-        rotation = Quaternion.Euler(0, rotation.eulerAngles.y, 0);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Velocity * Time.deltaTime);
+        Quaternion lookQuaternion = GetQuaternionLookingAt(Player.position);
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookQuaternion, Velocity * Time.deltaTime);
+    }
+
+    private Quaternion GetQuaternionLookingAt(Vector3 _position)
+    {
+        Vector3 direction = (_position - transform.position).normalized;
+        Quaternion finalRotation = Quaternion.LookRotation(direction);
+
+        return Quaternion.Euler(0, finalRotation.eulerAngles.y, 0);
     }
 }
