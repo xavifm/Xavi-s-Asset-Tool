@@ -14,10 +14,10 @@ public class NpcMExample : NpcMovementEntity
 
         if(Vector3.Distance(Player.position, transform.position) >= 2)
         {
-            Vector3 dir = (Player.position - transform.position);
-            dir = new Vector3(dir.x, 0, dir.z);
+            Vector3 direction = (Player.position - transform.position);
+            direction = new Vector3(direction.x, 0, direction.z);
 
-            EntityRb.velocity = dir.normalized * Velocity;
+            EntityRb.velocity = direction.normalized * Velocity;
         }
     }
 
