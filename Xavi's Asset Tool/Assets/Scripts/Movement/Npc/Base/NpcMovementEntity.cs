@@ -8,6 +8,9 @@ public class NpcMovementEntity : CreatureMovement
     protected Dictionary<AnimationStates, string> Animations;
     protected AnimationStates CurrentAnimation;
 
+    [SerializeField] protected float RotationSpeed;
+    [SerializeField] private float DamageTime;
+
     public override void AnimationLogic()
     {
         if (Animations == null)
@@ -19,6 +22,11 @@ public class NpcMovementEntity : CreatureMovement
         AnimatorEntity.SwitchCharacterSpeedBlend(EntityRb.velocity.magnitude);
     }
 
+    public override void DamageEntity()
+    {
+        StartCoroutine(DamageCorroutine());
+    }
+
     public virtual void InitializeList()
     {
         CurrentAnimation = AnimationStates.WALK;
@@ -28,5 +36,14 @@ public class NpcMovementEntity : CreatureMovement
         Animations.Add(AnimationStates.DAMAGE, "Damaged");
         Animations.Add(AnimationStates.DEAD, "Dead");
         Animations.Add(AnimationStates.ATTACK, "Attack");
+    }
+
+    private IEnumerator DamageCorroutine()
+    {
+        CurrentAnimation = AnimationStates.DAMAGE;
+
+        yield return new WaitForSeconds(DamageTime);
+
+        CurrentAnimation = AnimationStates.WALK;
     }
 }

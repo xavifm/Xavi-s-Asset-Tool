@@ -12,7 +12,8 @@ public class NpcMExample : NpcMovementEntity
     {
         base.MovementLogic();
 
-        if(Vector3.Distance(Player.position, transform.position) >= 2)
+        if(Vector3.Distance(Player.position, transform.position) >= 2 
+            && CurrentAnimation != AnimationStates.DAMAGE)
         {
             Vector3 direction = (Player.position - transform.position);
             direction = new Vector3(direction.x, 0, direction.z);
@@ -26,7 +27,7 @@ public class NpcMExample : NpcMovementEntity
         base.RotationLogic();
 
         Quaternion lookQuaternion = GetQuaternionLookingAt(Player.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, lookQuaternion, Velocity * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation, lookQuaternion, RotationSpeed * Time.deltaTime);
     }
 
     private Quaternion GetQuaternionLookingAt(Vector3 _position)
@@ -36,4 +37,5 @@ public class NpcMExample : NpcMovementEntity
 
         return Quaternion.Euler(0, finalRotation.eulerAngles.y, 0);
     }
+
 }

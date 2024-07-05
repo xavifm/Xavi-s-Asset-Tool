@@ -1501,6 +1501,8 @@ MonoBehaviour:
   JumpForce: 0
   RaycastReferencePoint: {fileID: 0}
   PickupDistance: 5
+  RotationSpeed: 5
+  DamageTime: 2
   Player: {fileID: 2113216376}
 --- !u!1 &622683188
 GameObject:

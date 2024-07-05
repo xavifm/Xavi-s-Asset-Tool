@@ -95,6 +95,11 @@ public class Movement : MonoBehaviour
         }
     }
 
+    public virtual void DamageEntity()
+    {
+
+    }
+
     public void EnablePhysics()
     {
         EntityRb.constraints = OriginalConstraints;
@@ -157,6 +162,7 @@ public class Movement : MonoBehaviour
         foreach (Entity entity in closeEntities)
         {
             Vector3 implodeVector = entity.transform.position - transform.position;
+            entity.MovementLogic.DamageEntity();
             entity.MovementLogic.EntityRb.velocity = implodeVector * _force;
         }
     }
