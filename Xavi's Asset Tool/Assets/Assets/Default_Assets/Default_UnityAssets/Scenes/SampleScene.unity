@@ -405,7 +405,6 @@ MonoBehaviour:
   Colliding: 0
   ColliderList:
   - {fileID: 97160117}
-  EntityManager: {fileID: 0}
 --- !u!114 &97160115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1495,7 +1494,6 @@ MonoBehaviour:
   Colliding: 0
   ColliderList:
   - {fileID: 96424435}
-  EntityManager: {fileID: 0}
   Velocity: 2
   ResetSpeed: 0
   JumpForce: 0
@@ -1503,7 +1501,9 @@ MonoBehaviour:
   PickupDistance: 5
   RotationSpeed: 5
   DamageTime: 2
-  Player: {fileID: 2113216376}
+  Target: {fileID: 0}
+  TargetFindDistance: 5
+  StopDistance: 2
 --- !u!1 &622683188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2769,7 +2769,6 @@ MonoBehaviour:
   Colliding: 0
   ColliderList:
   - {fileID: 1215857628}
-  EntityManager: {fileID: 0}
 --- !u!114 &1215857626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3506,7 +3505,6 @@ MonoBehaviour:
   Colliding: 0
   ColliderList:
   - {fileID: 1525856731}
-  EntityManager: {fileID: 0}
   Breakable: 1
   BreakVelocity: 5
   ExplosionRadius: 0
@@ -3922,7 +3920,6 @@ MonoBehaviour:
   Colliding: 0
   ColliderList:
   - {fileID: 1565998224}
-  EntityManager: {fileID: 0}
   Breakable: 1
   BreakVelocity: 1
   ExplosionRadius: 0
@@ -4442,7 +4439,6 @@ MonoBehaviour:
   Colliding: 0
   ColliderList:
   - {fileID: 1623602173}
-  EntityManager: {fileID: 0}
 --- !u!114 &1623602178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4841,7 +4837,6 @@ MonoBehaviour:
   Colliding: 0
   ColliderList:
   - {fileID: 1682994630}
-  EntityManager: {fileID: 0}
   Breakable: 1
   BreakVelocity: 5
   ExplosionRadius: 2
@@ -5579,7 +5574,6 @@ MonoBehaviour:
   Colliding: 0
   ColliderList:
   - {fileID: 1866932124}
-  EntityManager: {fileID: 0}
   Breakable: 1
   BreakVelocity: 5
   ExplosionRadius: 0
@@ -6377,7 +6371,6 @@ MonoBehaviour:
   CollisionTag: 
   Colliding: 0
   ColliderList: []
-  EntityManager: {fileID: 0}
   Velocity: 7
   ResetSpeed: 10
   JumpForce: 2

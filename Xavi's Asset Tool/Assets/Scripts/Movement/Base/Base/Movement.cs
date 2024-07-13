@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
 
     private RigidbodyConstraints OriginalConstraints;
     [SerializeField] Collider[] ColliderList;
-    [SerializeField] EntityManager EntityManager;
+    protected EntityManager EntityManager;
 
     void Start()
     {

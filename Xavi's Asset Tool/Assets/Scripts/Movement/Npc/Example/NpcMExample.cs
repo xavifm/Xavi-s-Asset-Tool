@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class NpcMExample : NpcMovementEntity
 {
-    public Transform Player;
+    [SerializeField] Transform Target;
+    [SerializeField] float TargetFindDistance;
+    [SerializeField] float StopDistance = 2;
 
     //ultra simple dirty exampled, remake it clear by using entity component system integrated
 
@@ -12,10 +14,13 @@ public class NpcMExample : NpcMovementEntity
     {
         base.MovementLogic();
 
-        if(Vector3.Distance(Player.position, transform.position) >= 2 
+        Target = GetClosestTarget(TargetFindDistance, Entity.EntityType.CREATURE_PLAYER);
+
+        if (Target != null
+            && Vector3.Distance(Target.position, transform.position) >= StopDistance
             && CurrentAnimation != AnimationStates.DAMAGE)
         {
-            Vector3 direction = (Player.position - transform.position);
+            Vector3 direction = (Target.position - transform.position);
             direction = new Vector3(direction.x, 0, direction.z);
 
             EntityRb.velocity = direction.normalized * Velocity;
@@ -26,7 +31,10 @@ public class NpcMExample : NpcMovementEntity
     {
         base.RotationLogic();
 
-        Quaternion lookQuaternion = GetQuaternionLookingAt(Player.position);
+        if (Target == null)
+            return;
+
+        Quaternion lookQuaternion = GetQuaternionLookingAt(Target.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, lookQuaternion, RotationSpeed * Time.deltaTime);
     }
 
