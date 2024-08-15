@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CreatureEntity : Entity
 {
-    public int life;
     [SerializeField] protected Inventory InventoryLogic;
     [SerializeField] protected Hand HandItem;
 

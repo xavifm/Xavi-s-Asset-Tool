@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
 
     [HideInInspector] public string CollisionTag;
     [HideInInspector] public bool Colliding;
+    [HideInInspector] public float LifeToRemove;
 
     protected Transform ColliderEntity;
 
@@ -95,9 +96,14 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public virtual void DamageEntity()
+    public virtual void DamageEntity(float _quantity = 0f)
     {
+        RemoveLife(_quantity);
+    }
 
+    public void RemoveLife(float _quantity)
+    {
+        LifeToRemove = _quantity;
     }
 
     public void EnablePhysics()

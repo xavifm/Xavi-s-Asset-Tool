@@ -53,7 +53,7 @@ public class CreatureMovement : Movement
             {
                 Vector3 hitVector = transform.TransformDirection(Vector3.back) * (rigidbodyVelocity / (rigidbodyVelocity / DIVISION_MARGIN));
                 EntityRb.velocity = EntityRb.velocity + hitVector;
-                DamageEntity();
+                DamageEntity(rigidbodyVelocity * 2);
             }
         }
     }

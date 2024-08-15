@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NpcMovementEntity : CreatureMovement
 {
-    protected enum AnimationStates { WALK, DAMAGE, DEAD, ATTACK }
+    public enum AnimationStates { WALK, DAMAGE, DEAD, ATTACK }
     protected Dictionary<AnimationStates, string> Animations;
     protected AnimationStates CurrentAnimation;
 
@@ -24,8 +24,9 @@ public class NpcMovementEntity : CreatureMovement
         AnimatorEntity.SwitchCharacterSpeedBlend(EntityRb.velocity.magnitude);
     }
 
-    public override void DamageEntity()
+    public override void DamageEntity(float _damage = 0f)
     {
+        base.DamageEntity(_damage);
         StartCoroutine(DamageCorroutine());
     }
 
@@ -38,6 +39,11 @@ public class NpcMovementEntity : CreatureMovement
         Animations.Add(AnimationStates.DAMAGE, "Damaged");
         Animations.Add(AnimationStates.DEAD, "Dead");
         Animations.Add(AnimationStates.ATTACK, "Attack");
+    }
+
+    public void SwitchState(AnimationStates _state)
+    {
+        CurrentAnimation = _state;
     }
 
     protected Transform GetClosestTarget(float _distance, Entity.EntityType _type)
@@ -65,10 +71,10 @@ public class NpcMovementEntity : CreatureMovement
 
     private IEnumerator DamageCorroutine()
     {
-        CurrentAnimation = AnimationStates.DAMAGE;
+        SwitchState(AnimationStates.DAMAGE);
 
         yield return new WaitForSeconds(DamageTime);
 
-        CurrentAnimation = AnimationStates.WALK;
+        SwitchState(AnimationStates.WALK);
     }
 }

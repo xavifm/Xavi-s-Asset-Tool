@@ -16,5 +16,17 @@ public class Npc : CreatureEntity
         movementCast.AnimationLogic();
         movementCast.CollisionLogic();
     }
+
+    public override void LifeLogic()
+    {
+        base.LifeLogic();
+
+        if (Life <= 0)
+        {
+            NpcMovementEntity movementNpcAux = (NpcMovementEntity) MovementLogic;
+            movementNpcAux.SwitchState(NpcMovementEntity.AnimationStates.DEAD);
+        }
+
+    }
 }
 
