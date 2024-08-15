@@ -10,11 +10,14 @@ public class Npc : CreatureEntity
         base.VirtualUpdate();
         NpcMovementEntity movementCast = (NpcMovementEntity) MovementLogic;
 
-        movementCast.MovementLogic();
-        movementCast.RotationLogic();
-        movementCast.JumpLogic();
-        movementCast.AnimationLogic();
-        movementCast.CollisionLogic();
+        if(Life > 0)
+        {
+            movementCast.MovementLogic();
+            movementCast.RotationLogic();
+            movementCast.JumpLogic();
+            movementCast.AnimationLogic();
+            movementCast.CollisionLogic();
+        }
     }
 
     public override void LifeLogic()
