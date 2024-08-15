@@ -9,6 +9,9 @@ public class CreatureMovement : Movement
     [SerializeField] protected float JumpForce;
     [SerializeField] protected Transform RaycastReferencePoint;
     [SerializeField] protected float PickupDistance = 5;
+    [SerializeField] protected float DamageEntitySpeed = 0.5f;
+
+    private const float DIVISION_MARGIN = 1.05f;
 
     public override void MovementLogic()
     {
@@ -31,6 +34,28 @@ public class CreatureMovement : Movement
         }
 
         return objectExtracted;
+    }
+
+    public virtual void CollisionLogic()
+    {
+        if (ColliderEntity == null)
+            return;
+
+        Entity entityQuery = GetObjectEntity(ColliderEntity);
+
+        if(entityQuery != null)
+        {
+            Movement movement = entityQuery.MovementLogic;
+
+            float rigidbodyVelocity = movement.EntityRb.velocity.magnitude;
+
+            if (entityQuery.TypeOfEntity.Equals(Entity.EntityType.WORLD_PROP) && rigidbodyVelocity > DamageEntitySpeed)
+            {
+                Vector3 hitVector = transform.TransformDirection(Vector3.back) * (rigidbodyVelocity / (rigidbodyVelocity / DIVISION_MARGIN));
+                EntityRb.velocity = EntityRb.velocity + hitVector;
+                DamageEntity();
+            }
+        }
     }
 
     public virtual void JumpLogic()

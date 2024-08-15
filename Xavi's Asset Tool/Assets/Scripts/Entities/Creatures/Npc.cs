@@ -14,7 +14,7 @@ public class Npc : CreatureEntity
         movementCast.RotationLogic();
         movementCast.JumpLogic();
         movementCast.AnimationLogic();
-
+        movementCast.CollisionLogic();
     }
 }
 
