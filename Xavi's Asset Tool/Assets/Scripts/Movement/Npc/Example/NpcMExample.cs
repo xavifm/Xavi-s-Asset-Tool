@@ -18,7 +18,7 @@ public class NpcMExample : NpcMovementEntity
 
         if (Target != null
             && Vector3.Distance(Target.position, transform.position) >= StopDistance
-            && CurrentAnimation != AnimationStates.DAMAGE)
+            && CurrentAnimation != AnimationStates.DAMAGE && CurrentAnimation != AnimationStates.DEAD)
         {
             Vector3 direction = (Target.position - transform.position);
             direction = new Vector3(direction.x, 0, direction.z);
