@@ -1437,7 +1437,6 @@ MonoBehaviour:
   TimerDisapear: 0
   MovementLogic: {fileID: 589239110}
   StoredItem: 0
-  life: 100
   InventoryLogic: {fileID: 0}
   HandItem: {fileID: 0}
 --- !u!54 &589239108
@@ -6379,7 +6378,6 @@ MonoBehaviour:
   TimerDisapear: 0
   MovementLogic: {fileID: 2113216380}
   StoredItem: 0
-  life: 100
   InventoryLogic: {fileID: 2113216381}
   HandItem: {fileID: 533688154}
   ActionKey: 101
