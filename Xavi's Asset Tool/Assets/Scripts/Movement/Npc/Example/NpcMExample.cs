@@ -31,7 +31,7 @@ public class NpcMExample : NpcMovementEntity
     {
         base.RotationLogic();
 
-        if (Target == null)
+        if (Target == null || CurrentAnimation == AnimationStates.DEAD)
             return;
 
         Quaternion lookQuaternion = GetQuaternionLookingAt(Target.position);
