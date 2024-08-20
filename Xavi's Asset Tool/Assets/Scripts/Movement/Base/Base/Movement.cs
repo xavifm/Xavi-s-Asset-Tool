@@ -168,7 +168,7 @@ public class Movement : MonoBehaviour
         foreach (Entity entity in closeEntities)
         {
             Vector3 implodeVector = entity.transform.position - transform.position;
-            entity.MovementLogic.DamageEntity();
+            entity.MovementLogic.DamageEntity(_radius * _force);
             entity.MovementLogic.EntityRb.velocity = implodeVector * _force;
         }
     }
