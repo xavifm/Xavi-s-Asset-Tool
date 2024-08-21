@@ -3521,6 +3521,7 @@ MonoBehaviour:
   Breakable: 1
   BreakVelocity: 5
   ExplosionRadius: 0
+  ExplosionForce: 0
   BreakType: 2
   DestroyTime: 0
 --- !u!114 &1525856725
@@ -3940,6 +3941,7 @@ MonoBehaviour:
   Breakable: 1
   BreakVelocity: 1
   ExplosionRadius: 0
+  ExplosionForce: 0
   BreakType: 2
   DestroyTime: 0
 --- !u!114 &1565998218
@@ -4866,8 +4868,9 @@ MonoBehaviour:
   ColliderList:
   - {fileID: 1682994630}
   Breakable: 1
-  BreakVelocity: 5
-  ExplosionRadius: 2
+  BreakVelocity: 2
+  ExplosionRadius: 5
+  ExplosionForce: 10
   BreakType: 1
   DestroyTime: 0
 --- !u!1 &1716916260
@@ -5606,6 +5609,7 @@ MonoBehaviour:
   Breakable: 1
   BreakVelocity: 5
   ExplosionRadius: 0
+  ExplosionForce: 0
   BreakType: 2
   DestroyTime: 0
 --- !u!114 &1866932118

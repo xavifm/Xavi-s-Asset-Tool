@@ -8,6 +8,7 @@ public class PropMovement : Movement
     [SerializeField] bool Breakable;
     [SerializeField] float BreakVelocity;
     [SerializeField] float ExplosionRadius;
+    [SerializeField] float ExplosionForce;
     [SerializeField] BreakStyle BreakType;
     [SerializeField] float DestroyTime;
 
@@ -42,17 +43,14 @@ public class PropMovement : Movement
 
     private void ExecuteDestruction(BreakStyle _style, Collision _collision = null)
     {
-        float velocityMagnitude = EntityRb.velocity.magnitude;
-
         if (BreakType.Equals(BreakStyle.EXPLOSION))
-            Explode(EntityRb.velocity, ExplosionRadius, velocityMagnitude);
+            Explode(EntityRb.velocity, ExplosionRadius, ExplosionForce);
 
         if (BreakType.Equals(BreakStyle.BREAK))
             Destroy(DestroyTime);
 
         if (_collision != null && BreakType.Equals(BreakStyle.WALL_BREAK))
-            FragmentEntity.FragmentByCollision(_collision);
-            
+            FragmentEntity.FragmentByCollision(_collision);         
     }
 
     public override void OnCollisionStay(Collision collision)
