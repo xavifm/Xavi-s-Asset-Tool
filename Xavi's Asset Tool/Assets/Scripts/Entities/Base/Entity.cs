@@ -43,4 +43,9 @@ public class Entity : MonoBehaviour
             if (Life <= 0) MovementLogic.Destroy(TimerDisapear);
         }
     }
+
+    public virtual void InteractWith()
+    {
+
+    }
 }

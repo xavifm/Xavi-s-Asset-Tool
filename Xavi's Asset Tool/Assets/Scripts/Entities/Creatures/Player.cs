@@ -6,7 +6,7 @@ public class Player : CreatureEntity
 {
     [SerializeField] KeyCode ActionKey;
     [SerializeField] KeyCode PauseKey;
-    [SerializeField] KeyCode ThrowKey;
+    [SerializeField] KeyCode InteractKey;
     [SerializeField] MenuManager MenuSystem;
 
     const float SCROLL_MULTIPLIER = 10;
@@ -33,12 +33,19 @@ public class Player : CreatureEntity
 
         if(!MenuSystem.HaveOpenMenu)
         {
-            if (Input.GetKeyDown(ThrowKey))
+            if (Input.GetKeyDown(InteractKey))
             {
-                Entity entityThrown = HandItem.CurrentHandItem;
-                HandItem.ThrowHandItem(InventoryLogic);
-                Entity nextEntity = InventoryLogic.GetItemByIdentity(entityThrown);
-                HandItem.SetHandItem(nextEntity);
+                Entity entityOnHand = HandItem.CurrentHandItem;
+
+                if(entityOnHand != null)
+                    entityOnHand.InteractWith();
+
+                if (entityOnHand.TypeOfEntity.Equals(EntityType.WORLD_PROP))
+                {
+                    HandItem.ThrowHandItem(InventoryLogic);
+                    Entity nextEntity = InventoryLogic.GetItemByIdentity(entityOnHand);
+                    HandItem.SetHandItem(nextEntity);
+                }
             }
 
             if (Input.GetKeyDown(ActionKey))

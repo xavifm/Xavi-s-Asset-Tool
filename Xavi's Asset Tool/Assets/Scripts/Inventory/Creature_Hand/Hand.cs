@@ -55,6 +55,11 @@ public class Hand : MonoBehaviour
         }
     }
 
+    public void InteractWithHandEntity(Entity _entity)
+    {
+        _entity.InteractWith();
+    }
+
     public void DropCurrentHandItem()
     {
         if (CurrentHandItem != null)
