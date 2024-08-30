@@ -7,6 +7,7 @@ public class Player : CreatureEntity
     [SerializeField] KeyCode ActionKey;
     [SerializeField] KeyCode PauseKey;
     [SerializeField] KeyCode InteractKey;
+    [SerializeField] KeyCode InteractKeySecondary;
     [SerializeField] MenuManager MenuSystem;
 
     const float SCROLL_MULTIPLIER = 10;
@@ -33,23 +34,48 @@ public class Player : CreatureEntity
 
         if(!MenuSystem.HaveOpenMenu)
         {
-            if (Input.GetKeyDown(InteractKey))
-            {
-                Entity entityOnHand = HandItem.CurrentHandItem;
+            Entity entityOnHand = HandItem.CurrentHandItem;
 
-                if(entityOnHand != null)
-                    entityOnHand.InteractWith();
-
-                if (entityOnHand.TypeOfEntity.Equals(EntityType.WORLD_PROP))
-                {
-                    HandItem.ThrowHandItem(InventoryLogic);
-                    Entity nextEntity = InventoryLogic.GetItemByIdentity(entityOnHand);
-                    HandItem.SetHandItem(nextEntity);
-                }
-            }
+            WeaponsInteractionLogic(entityOnHand);
+            GlobalInteractionLogic(entityOnHand);
 
             if (Input.GetKeyDown(ActionKey))
                 PickupEntity();
+        }
+    }
+
+    private void WeaponsInteractionLogic(Entity _handEntity)
+    {
+        if (_handEntity == null)
+            return;
+
+        if (_handEntity.TypeOfEntity.Equals(EntityType.WEAPON))
+        {
+            Weapon handWeapon = (Weapon) _handEntity;
+
+            if (Input.GetKey(InteractKey))
+                handWeapon.InteractWithWeapon(InteractKey);
+
+            if (Input.GetKey(InteractKeySecondary))
+                handWeapon.InteractWithWeapon(InteractKeySecondary);
+        }
+    }
+
+    private void GlobalInteractionLogic(Entity _handEntity)
+    {
+        if (_handEntity == null)
+            return;
+
+        if (Input.GetKeyDown(InteractKey))
+        {
+            _handEntity.InteractWith();
+
+            if (_handEntity.TypeOfEntity.Equals(EntityType.WORLD_PROP))
+            {
+                HandItem.ThrowHandItem(InventoryLogic);
+                Entity nextEntity = InventoryLogic.GetItemByIdentity(_handEntity);
+                HandItem.SetHandItem(nextEntity);
+            }
         }
     }
 }

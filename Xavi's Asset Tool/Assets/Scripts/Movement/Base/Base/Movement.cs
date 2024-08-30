@@ -96,6 +96,23 @@ public class Movement : MonoBehaviour
         }
     }
 
+    public virtual Entity CheckPointingEntity(Transform _rayCastPoint = null, float _distance = 0)
+    {
+        Entity objectExtracted = null;
+
+        RaycastHit hit;
+
+        Transform rayCastPoint = EntityTransform;
+
+        if (_rayCastPoint != null)
+            rayCastPoint = _rayCastPoint;
+
+        if (Physics.Raycast(rayCastPoint.position, rayCastPoint.TransformDirection(Vector3.forward), out hit, _distance))
+            objectExtracted = hit.collider.GetComponent<Entity>();
+
+        return objectExtracted;
+    }
+
     public virtual void DamageEntity(float _quantity = 0f)
     {
         RemoveLife(_quantity);

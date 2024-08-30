@@ -1504,9 +1504,9 @@ MonoBehaviour:
   Velocity: 2
   ResetSpeed: 0
   JumpForce: 0
-  RaycastReferencePoint: {fileID: 0}
   PickupDistance: 5
   DamageEntitySpeed: 0.5
+  RaycastReferencePoint: {fileID: 0}
   RotationSpeed: 5
   DamageTime: 2
   Target: {fileID: 0}
@@ -2913,7 +2913,7 @@ GameObject:
   - component: {fileID: 1258977433}
   - component: {fileID: 1258977432}
   - component: {fileID: 1258977431}
-  - component: {fileID: 1258977436}
+  - component: {fileID: 1258977437}
   - component: {fileID: 1258977429}
   - component: {fileID: 1258977428}
   - component: {fileID: 1258977427}
@@ -3204,7 +3204,7 @@ RectTransform:
   m_AnchoredPosition: {x: 7.5, y: 0.5083564}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1258977436
+--- !u!114 &1258977437
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3213,17 +3213,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1258977421}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c90664d3b2a6e3944948b01e2d808d93, type: 3}
+  m_Script: {fileID: 11500000, guid: f6ddd95a2dba8614ca45dc4c26b9d898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   TypeOfEntity: 4
-  Name: Physgun
+  Name: Physgyn
   Description: {fileID: 1258977427}
-  Life: 100
+  Life: 0
   IsKillable: 0
   TimerDisapear: 0
   MovementLogic: {fileID: 1258977425}
   StoredItem: 0
+  RayCastPoint: {fileID: 0}
+  AttackKey: 323
+  CloseKey: 324
+  CatchDistance: 10
+  ObtainedItemPhysGunDistance: 2
+  DistanceWeaponCatchOffset: 1
+  CatchForce: 3
+  ThrowForce: 25
+  CaughtLerpVelocity: 50
 --- !u!4 &1278355951 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4354465822509128, guid: 85dfab9623c67784fa7894de63cd1604, type: 3}
@@ -6711,6 +6720,7 @@ MonoBehaviour:
   ActionKey: 101
   PauseKey: 27
   InteractKey: 323
+  InteractKeySecondary: 324
   MenuSystem: {fileID: 2113216383}
 --- !u!114 &2113216380
 MonoBehaviour:
@@ -6737,9 +6747,9 @@ MonoBehaviour:
   Velocity: 7
   ResetSpeed: 10
   JumpForce: 2
-  RaycastReferencePoint: {fileID: 502998237}
   PickupDistance: 5
   DamageEntitySpeed: 0.5
+  RaycastReferencePoint: {fileID: 502998237}
   PlayerCamera: {fileID: 502998240}
   MouseSensitivity: 0.1
   CameraAngleLimits: 0.5
