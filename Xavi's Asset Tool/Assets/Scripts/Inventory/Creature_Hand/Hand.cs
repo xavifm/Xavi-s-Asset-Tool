@@ -12,6 +12,7 @@ public class Hand : MonoBehaviour
     
 
     const float THROW_MARGIN = 0.8f;
+    const float WEAPON_HAND_MARGIN = 1.5f;
 
     public void SetHandItem(Entity _item)
     {
@@ -28,6 +29,9 @@ public class Hand : MonoBehaviour
             itemTransform.parent = transform;
             itemTransform.localPosition = Vector3.zero;
             itemTransform.localRotation = Quaternion.identity;
+
+            if (_item.TypeOfEntity.Equals(Entity.EntityType.WEAPON))
+                itemTransform.localPosition += new Vector3(WEAPON_HAND_MARGIN, 0, 0);
 
             CurrentHandItem = _item;
 
