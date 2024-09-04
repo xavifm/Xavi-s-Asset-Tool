@@ -16,8 +16,8 @@ public class EntityResize : MonoBehaviour
     {
         if(_modelResize)
             _object.localScale = Vector3.Lerp(_object.localScale, OriginalModelSize, Time.deltaTime * _velocity);
-
-        _object.localScale = Vector3.Lerp(_object.localScale, OriginalEntitySize, Time.deltaTime * _velocity);
+        else
+            _object.localScale = Vector3.Lerp(_object.localScale, OriginalEntitySize, Time.deltaTime * _velocity);
     }
 
     public void InstantResize(Transform _object, Vector3 _size)
@@ -29,7 +29,7 @@ public class EntityResize : MonoBehaviour
     {
         if(_modelResize)
             _object.localScale = OriginalModelSize;
-
-        _object.localScale = OriginalEntitySize;
+        else
+            _object.localScale = OriginalEntitySize;
     }
 }
