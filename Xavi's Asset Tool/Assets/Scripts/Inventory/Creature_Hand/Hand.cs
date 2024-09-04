@@ -13,6 +13,7 @@ public class Hand : MonoBehaviour
 
     const float THROW_MARGIN = 0.8f;
     const float WEAPON_HAND_MARGIN = 1.5f;
+    const float WEAPON_RESIZE = 2;
 
     public void SetHandItem(Entity _item)
     {
@@ -31,7 +32,10 @@ public class Hand : MonoBehaviour
             itemTransform.localRotation = Quaternion.identity;
 
             if (_item.TypeOfEntity.Equals(Entity.EntityType.WEAPON))
+            {
+                _item.MovementLogic.Resize(_item.MovementLogic.ResizeEntity.OriginalModelSize * WEAPON_RESIZE, _modelResize: true);
                 itemTransform.localPosition += new Vector3(WEAPON_HAND_MARGIN, 0, 0);
+            }
 
             CurrentHandItem = _item;
 

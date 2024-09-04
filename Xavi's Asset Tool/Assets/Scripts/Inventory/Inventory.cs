@@ -190,5 +190,8 @@ public class Inventory : MonoBehaviour
         sceneObject.SetActive(true);
 
         _object.MovementLogic.RestoreSize();
+
+        if(_object.TypeOfEntity.Equals(Entity.EntityType.WEAPON))
+            _object.MovementLogic.RestoreSize(_modelResize: true);
     }
 }

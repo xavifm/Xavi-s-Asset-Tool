@@ -382,7 +382,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924f5b6358048ef45a7e07c2257cfc39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalSize: {x: 0, y: 0, z: 0}
+  OriginalEntitySize: {x: 0, y: 0, z: 0}
+  OriginalModelSize: {x: 0, y: 0, z: 0}
 --- !u!114 &97160114
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -397,6 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 97160116}
   EntityTransform: {fileID: 0}
+  ModelTransform: {fileID: 0}
   AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 97160113}
   FragmentEntity: {fileID: 0}
@@ -1526,6 +1528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 559051386}
   EntityTransform: {fileID: 559051388}
+  ModelTransform: {fileID: 494824506}
   AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 559051384}
   FragmentEntity: {fileID: 559051381}
@@ -1610,7 +1613,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924f5b6358048ef45a7e07c2257cfc39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalSize: {x: 0.5, y: 0.5, z: 0.5}
+  OriginalEntitySize: {x: 0, y: 0, z: 0}
+  OriginalModelSize: {x: 0, y: 0, z: 0}
 --- !u!114 &559051385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1781,6 +1785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 589239108}
   EntityTransform: {fileID: 0}
+  ModelTransform: {fileID: 0}
   AnimatorEntity: {fileID: 589239109}
   ResizeEntity: {fileID: 0}
   FragmentEntity: {fileID: 0}
@@ -3043,7 +3048,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924f5b6358048ef45a7e07c2257cfc39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalSize: {x: 0, y: 0, z: 0}
+  OriginalEntitySize: {x: 0, y: 0, z: 0}
+  OriginalModelSize: {x: 0, y: 0, z: 0}
 --- !u!114 &1215857625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3058,6 +3064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 1215857627}
   EntityTransform: {fileID: 0}
+  ModelTransform: {fileID: 0}
   AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 1215857624}
   FragmentEntity: {fileID: 0}
@@ -3881,6 +3888,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 1525856730}
   EntityTransform: {fileID: 1525856734}
+  ModelTransform: {fileID: 0}
   AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 1525856728}
   FragmentEntity: {fileID: 1525856725}
@@ -3968,7 +3976,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924f5b6358048ef45a7e07c2257cfc39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalSize: {x: 0, y: 0, z: 0}
+  OriginalEntitySize: {x: 0, y: 0, z: 0}
+  OriginalModelSize: {x: 0, y: 0, z: 0}
 --- !u!114 &1525856729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4301,6 +4310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 1565998223}
   EntityTransform: {fileID: 1565998213}
+  ModelTransform: {fileID: 0}
   AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 1565998221}
   FragmentEntity: {fileID: 1565998218}
@@ -4388,7 +4398,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924f5b6358048ef45a7e07c2257cfc39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalSize: {x: 0, y: 0, z: 0}
+  OriginalEntitySize: {x: 0, y: 0, z: 0}
+  OriginalModelSize: {x: 0, y: 0, z: 0}
 --- !u!114 &1565998222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4828,6 +4839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 1623602172}
   EntityTransform: {fileID: 0}
+  ModelTransform: {fileID: 0}
   AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 1623602178}
   FragmentEntity: {fileID: 0}
@@ -4849,7 +4861,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924f5b6358048ef45a7e07c2257cfc39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalSize: {x: 0, y: 0, z: 0}
+  OriginalEntitySize: {x: 0, y: 0, z: 0}
+  OriginalModelSize: {x: 0, y: 0, z: 0}
 --- !u!114 &1623602179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5001,7 +5014,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924f5b6358048ef45a7e07c2257cfc39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalSize: {x: 0, y: 0, z: 0}
+  OriginalEntitySize: {x: 0, y: 0, z: 0}
+  OriginalModelSize: {x: 0, y: 0, z: 0}
 --- !u!114 &1682994628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5230,6 +5244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 1682994629}
   EntityTransform: {fileID: 1682994633}
+  ModelTransform: {fileID: 0}
   AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 1682994626}
   FragmentEntity: {fileID: 1682994636}
@@ -5969,6 +5984,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 1866932123}
   EntityTransform: {fileID: 1866932127}
+  ModelTransform: {fileID: 0}
   AnimatorEntity: {fileID: 0}
   ResizeEntity: {fileID: 1866932121}
   FragmentEntity: {fileID: 1866932118}
@@ -6056,7 +6072,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924f5b6358048ef45a7e07c2257cfc39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalSize: {x: 0, y: 0, z: 0}
+  OriginalEntitySize: {x: 0, y: 0, z: 0}
+  OriginalModelSize: {x: 0, y: 0, z: 0}
 --- !u!114 &1866932122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6774,6 +6791,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntityRb: {fileID: 2113216377}
   EntityTransform: {fileID: 0}
+  ModelTransform: {fileID: 0}
   AnimatorEntity: {fileID: 2113216384}
   ResizeEntity: {fileID: 2113216382}
   FragmentEntity: {fileID: 0}
@@ -6822,7 +6840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 924f5b6358048ef45a7e07c2257cfc39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OriginalSize: {x: 0, y: 0, z: 0}
+  OriginalEntitySize: {x: 0, y: 0, z: 0}
+  OriginalModelSize: {x: 0, y: 0, z: 0}
 --- !u!114 &2113216383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7324,6 +7343,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9069972872591917700, guid: 5d5ec6e89ae532145ab49b8bb948a3da, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069972872591917700, guid: 5d5ec6e89ae532145ab49b8bb948a3da, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069972872591917700, guid: 5d5ec6e89ae532145ab49b8bb948a3da, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069972872591917700, guid: 5d5ec6e89ae532145ab49b8bb948a3da, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.39000034
       objectReference: {fileID: 0}
@@ -7362,6 +7393,10 @@ PrefabInstance:
     - target: {fileID: 9069972872591917700, guid: 5d5ec6e89ae532145ab49b8bb948a3da, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9069972872591917700, guid: 5d5ec6e89ae532145ab49b8bb948a3da, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9069972872591917703, guid: 5d5ec6e89ae532145ab49b8bb948a3da, type: 3}
       propertyPath: m_Name

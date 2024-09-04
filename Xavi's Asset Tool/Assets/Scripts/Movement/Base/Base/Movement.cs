@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     public Rigidbody EntityRb;
     public Transform EntityTransform;
+    public Transform ModelTransform;
     public EntityAnimator AnimatorEntity;
     
     public EntityResize ResizeEntity;
@@ -30,7 +31,12 @@ public class Movement : MonoBehaviour
         EntityManager = GameObject.FindObjectOfType<EntityManager>();
 
         if (ResizeEntity != null)
-            ResizeEntity.OriginalSize = EntityTransform.localScale;
+        {
+            ResizeEntity.OriginalEntitySize = EntityTransform.localScale;
+
+            if(ModelTransform != null)
+                ResizeEntity.OriginalModelSize = ModelTransform.localScale;
+        }
     }
 
     public virtual void AnimationLogic()
@@ -68,31 +74,45 @@ public class Movement : MonoBehaviour
             FragmentEntity.Explode(_radius, _force);
     }
 
-    public virtual void Resize(Vector3 _size, bool _lerp = false)
+    public virtual void Resize(Vector3 _size, bool _lerp = false, bool _modelResize = false)
     {
         if (ResizeEntity != null)
         {
             if(_lerp)
             {
-                ResizeEntity.Resize(EntityTransform, _size, ResizeSpeed);
+                if(_modelResize && ModelTransform != null)
+                    ResizeEntity.Resize(ModelTransform, _size, ResizeSpeed);
+                else
+                    ResizeEntity.Resize(EntityTransform, _size, ResizeSpeed);
+
                 return;
             }
 
-            ResizeEntity.InstantResize(EntityTransform, _size);
+            if(_modelResize && ModelTransform != null)
+                ResizeEntity.InstantResize(ModelTransform, _size);
+            else
+                ResizeEntity.InstantResize(EntityTransform, _size);
         }
     }
 
-    public virtual void RestoreSize(bool _lerp = false)
+    public virtual void RestoreSize(bool _lerp = false, bool _modelResize = false)
     {
         if (ResizeEntity != null)
         {
             if (_lerp)
             {
-                ResizeEntity.RestoreSize(EntityTransform, ResizeSpeed);
+                if(_modelResize && ModelTransform != null)
+                    ResizeEntity.RestoreSize(ModelTransform, ResizeSpeed, _modelResize: true);
+                else
+                    ResizeEntity.RestoreSize(EntityTransform, ResizeSpeed);
+
                 return;
             }
 
-            ResizeEntity.InstantRestoreSize(EntityTransform);
+            if (_modelResize && ModelTransform != null)
+                ResizeEntity.InstantRestoreSize(ModelTransform, _modelResize: true);
+            else
+                ResizeEntity.InstantRestoreSize(EntityTransform);
         }
     }
 

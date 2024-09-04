@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class EntityResize : MonoBehaviour
 {
-    [HideInInspector] public Vector3 OriginalSize;
+    [HideInInspector] public Vector3 OriginalEntitySize;
+    [HideInInspector] public Vector3 OriginalModelSize;
 
     public void Resize(Transform _object, Vector3 _size, float _velocity)
     {
         _object.localScale = Vector3.Lerp(_object.localScale, _size, Time.deltaTime * _velocity);
     }
 
-    public void RestoreSize(Transform _object, float _velocity)
+    public void RestoreSize(Transform _object, float _velocity, bool _modelResize = false)
     {
-        _object.localScale = Vector3.Lerp(_object.localScale, OriginalSize, Time.deltaTime * _velocity);
+        if(_modelResize)
+            _object.localScale = Vector3.Lerp(_object.localScale, OriginalModelSize, Time.deltaTime * _velocity);
+
+        _object.localScale = Vector3.Lerp(_object.localScale, OriginalEntitySize, Time.deltaTime * _velocity);
     }
 
     public void InstantResize(Transform _object, Vector3 _size)
@@ -21,8 +25,11 @@ public class EntityResize : MonoBehaviour
         _object.localScale = _size;
     }
 
-    public void InstantRestoreSize(Transform _object)
+    public void InstantRestoreSize(Transform _object, bool _modelResize = false)
     {
-        _object.localScale = OriginalSize;
+        if(_modelResize)
+            _object.localScale = OriginalModelSize;
+
+        _object.localScale = OriginalEntitySize;
     }
 }
