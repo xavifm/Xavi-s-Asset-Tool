@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CreatureEntity : Entity
 {
-    public int life;
     [SerializeField] protected Inventory InventoryLogic;
     [SerializeField] protected Hand HandItem;
 
@@ -15,7 +14,7 @@ public class CreatureEntity : Entity
         Entity forwardEntity = movement.CheckPointingEntity();
 
         if (forwardEntity != null)
-            InventoryLogic.StoreItem(forwardEntity);
+            InventoryLogic.StoreItem(forwardEntity, this);
     }
 
     public virtual void DropEntity()

@@ -20,7 +20,7 @@ public class EntityManager : MonoBehaviour
             MapEntities.Add(element);
     }
 
-    public List<Entity> GetCloseEntities(Entity _current, float _distance)
+    public List<Entity> GetCloseEntities(Entity _current, float _distance, Entity.EntityType _type = Entity.EntityType.DEFAULT)
     {
         List<Entity> entityQuery = new List<Entity>();
 
@@ -30,7 +30,9 @@ public class EntityManager : MonoBehaviour
             {
                 float distance = Vector3.Distance(_current.transform.position, element.transform.position);
 
-                if (distance <= _distance)
+                if (distance <= _distance 
+                    && (_type.Equals(Entity.EntityType.DEFAULT)
+                    || (!_type.Equals(Entity.EntityType.DEFAULT) && _type.Equals(element.TypeOfEntity))))
                     entityQuery.Add(element);
             }
         }

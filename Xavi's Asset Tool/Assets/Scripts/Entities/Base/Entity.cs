@@ -10,12 +10,17 @@ public class Entity : MonoBehaviour
     public EntityType TypeOfEntity;
     public string Name;
     public Text Description;
+    public float Life;
+    public bool IsKillable;
+    public float TimerDisapear;
     public Movement MovementLogic;
     public bool StoredItem;
 
+    private float MaxLife;
+
     void Start()
     {
-
+        MaxLife = Life;
     }
 
     void Update()
@@ -24,6 +29,22 @@ public class Entity : MonoBehaviour
     }
 
     public virtual void VirtualUpdate()
+    {
+        LifeLogic();
+    }
+
+    public virtual void LifeLogic()
+    {
+        if (IsKillable && MovementLogic.LifeToRemove > 0)
+        {
+            Life = Mathf.Clamp(Life - MovementLogic.LifeToRemove, 0, MaxLife);
+            MovementLogic.LifeToRemove = 0;
+
+            if (Life <= 0) MovementLogic.Destroy(TimerDisapear);
+        }
+    }
+
+    public virtual void InteractWith()
     {
 
     }

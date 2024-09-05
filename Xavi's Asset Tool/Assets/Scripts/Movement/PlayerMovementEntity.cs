@@ -12,7 +12,7 @@ public class PlayerMovementEntity : CreatureMovement
     [SerializeField] KeyCode SprintKey;
     [SerializeField] MenuManager MenuManager;
 
-    public override void AnimationLogic()
+    public override void AnimationLogic(float _blendValue = 0)
     {
         base.AnimationLogic();
     }

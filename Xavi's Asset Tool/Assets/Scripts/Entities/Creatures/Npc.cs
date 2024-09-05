@@ -2,17 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Npc : MonoBehaviour
+public class Npc : CreatureEntity
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public override void VirtualUpdate()
     {
-        
+        base.VirtualUpdate();
+        NpcMovementEntity movementCast = (NpcMovementEntity) MovementLogic;
+
+        movementCast.MovementLogic();
+        movementCast.RotationLogic();
+        movementCast.JumpLogic();
+        movementCast.AnimationLogic();
+        movementCast.CollisionLogic();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void LifeLogic()
     {
-        
+        base.LifeLogic();
+
+        if (Life <= 0)
+        {
+            NpcMovementEntity movementNpcAux = (NpcMovementEntity) MovementLogic;
+            movementNpcAux.SwitchState(NpcMovementEntity.AnimationStates.DEAD);
+        }
+
     }
 }
+

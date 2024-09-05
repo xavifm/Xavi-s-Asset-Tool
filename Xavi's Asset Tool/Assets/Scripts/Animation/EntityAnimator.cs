@@ -7,6 +7,8 @@ public class EntityAnimator : MonoBehaviour
     public List<AnimationList> Animations;
     public Animator AnimatorEntity;
 
+    [SerializeField] string SpeedBlendKey;
+
     public void SwitchAnimationState(string _state)
     {
         DisableAllAnimations();
@@ -16,7 +18,6 @@ public class EntityAnimator : MonoBehaviour
         if (animation != null)
             animation.EnableAnimation(AnimatorEntity);
     }
-
     public void DisableAllAnimations()
     {
         foreach(AnimationList animation in Animations)
@@ -24,6 +25,12 @@ public class EntityAnimator : MonoBehaviour
             animation.DisableAnimation(AnimatorEntity);
         }
     }
+
+    public void SwitchCharacterSpeedBlend(float _velocity)
+    {
+        AnimatorEntity.SetFloat(SpeedBlendKey, _velocity);
+    }
+
 
     AnimationList GetAnimation(string _state)
     {

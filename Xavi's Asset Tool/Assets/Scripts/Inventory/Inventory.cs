@@ -11,12 +11,15 @@ public class Inventory : MonoBehaviour
 
     const float STORE_SIZE = 0.5f;
 
-    public void StoreItem(Entity _object)
+    public void StoreItem(Entity _object, Entity _creatureEntity)
     {
         if(!_object.StoredItem && CheckIfIsForStorage(_object))
         {
             Items.Add(_object.gameObject);
             _object.StoredItem = true;
+
+            if (_object.TypeOfEntity.Equals(Entity.EntityType.WEAPON))
+                StoreWeaponLogic(_object, _creatureEntity);
 
             StartCoroutine(StoreCoroutine(_object));
 
@@ -106,6 +109,14 @@ public class Inventory : MonoBehaviour
         return result;
     }
 
+    private void StoreWeaponLogic(Entity _object, Entity _creatureEntity)
+    {
+        Weapon weaponStored = (Weapon) _object;
+        CreatureMovement movementCreature = (CreatureMovement)_creatureEntity.MovementLogic;
+        weaponStored.RayCastPoint = movementCreature.RaycastReferencePoint;
+        weaponStored.CreatureRb = movementCreature.EntityRb;
+    }
+
     private Entity GetAnyAvailableEntity(Entity.EntityType[] _availableTypes)
     {
         Entity entityQuery = null;
@@ -180,5 +191,8 @@ public class Inventory : MonoBehaviour
         sceneObject.SetActive(true);
 
         _object.MovementLogic.RestoreSize();
+
+        if(_object.TypeOfEntity.Equals(Entity.EntityType.WEAPON))
+            _object.MovementLogic.RestoreSize(_modelResize: true);
     }
 }

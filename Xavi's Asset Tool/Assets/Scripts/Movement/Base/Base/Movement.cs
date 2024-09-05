@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
 {
     public Rigidbody EntityRb;
     public Transform EntityTransform;
+    public Transform ModelTransform;
     public EntityAnimator AnimatorEntity;
     
     public EntityResize ResizeEntity;
@@ -14,12 +15,13 @@ public class Movement : MonoBehaviour
 
     [HideInInspector] public string CollisionTag;
     [HideInInspector] public bool Colliding;
+    [HideInInspector] public float LifeToRemove;
 
     protected Transform ColliderEntity;
 
     private RigidbodyConstraints OriginalConstraints;
     [SerializeField] Collider[] ColliderList;
-    [SerializeField] EntityManager EntityManager;
+    protected EntityManager EntityManager;
 
     void Start()
     {
@@ -29,10 +31,15 @@ public class Movement : MonoBehaviour
         EntityManager = GameObject.FindObjectOfType<EntityManager>();
 
         if (ResizeEntity != null)
-            ResizeEntity.OriginalSize = EntityTransform.localScale;
+        {
+            ResizeEntity.OriginalEntitySize = EntityTransform.localScale;
+
+            if(ModelTransform != null)
+                ResizeEntity.OriginalModelSize = ModelTransform.localScale;
+        }
     }
 
-    public virtual void AnimationLogic()
+    public virtual void AnimationLogic(float _blendValue = 0)
     {
 
     }
@@ -67,32 +74,73 @@ public class Movement : MonoBehaviour
             FragmentEntity.Explode(_radius, _force);
     }
 
-    public virtual void Resize(Vector3 _size, bool _lerp = false)
+    public virtual void Resize(Vector3 _size, bool _lerp = false, bool _modelResize = false)
     {
         if (ResizeEntity != null)
         {
             if(_lerp)
             {
-                ResizeEntity.Resize(EntityTransform, _size, ResizeSpeed);
+                if(_modelResize && ModelTransform != null)
+                    ResizeEntity.Resize(ModelTransform, _size, ResizeSpeed);
+                else
+                    ResizeEntity.Resize(EntityTransform, _size, ResizeSpeed);
+
                 return;
             }
 
-            ResizeEntity.InstantResize(EntityTransform, _size);
+            if(_modelResize && ModelTransform != null)
+                ResizeEntity.InstantResize(ModelTransform, _size);
+            else
+                ResizeEntity.InstantResize(EntityTransform, _size);
         }
     }
 
-    public virtual void RestoreSize(bool _lerp = false)
+    public virtual void RestoreSize(bool _lerp = false, bool _modelResize = false)
     {
         if (ResizeEntity != null)
         {
             if (_lerp)
             {
-                ResizeEntity.RestoreSize(EntityTransform, ResizeSpeed);
+                if(_modelResize && ModelTransform != null)
+                    ResizeEntity.RestoreSize(ModelTransform, ResizeSpeed, _modelResize: true);
+                else
+                    ResizeEntity.RestoreSize(EntityTransform, ResizeSpeed);
+
                 return;
             }
 
-            ResizeEntity.InstantRestoreSize(EntityTransform);
+            if (_modelResize && ModelTransform != null)
+                ResizeEntity.InstantRestoreSize(ModelTransform, _modelResize: true);
+            else
+                ResizeEntity.InstantRestoreSize(EntityTransform);
         }
+    }
+
+    public virtual Entity CheckPointingEntity(Transform _rayCastPoint = null, float _distance = 0)
+    {
+        Entity objectExtracted = null;
+
+        RaycastHit hit;
+
+        Transform rayCastPoint = EntityTransform;
+
+        if (_rayCastPoint != null)
+            rayCastPoint = _rayCastPoint;
+
+        if (Physics.Raycast(rayCastPoint.position, rayCastPoint.TransformDirection(Vector3.forward), out hit, _distance))
+            objectExtracted = hit.collider.GetComponent<Entity>();
+
+        return objectExtracted;
+    }
+
+    public virtual void DamageEntity(float _quantity = 0f)
+    {
+        RemoveLife(_quantity);
+    }
+
+    public void RemoveLife(float _quantity)
+    {
+        LifeToRemove = _quantity;
     }
 
     public void EnablePhysics()
@@ -157,6 +205,7 @@ public class Movement : MonoBehaviour
         foreach (Entity entity in closeEntities)
         {
             Vector3 implodeVector = entity.transform.position - transform.position;
+            entity.MovementLogic.DamageEntity(_radius * _force);
             entity.MovementLogic.EntityRb.velocity = implodeVector * _force;
         }
     }
