@@ -13,17 +13,24 @@ public class PhysGun : Weapon
     [SerializeField] private float ThrowForce;
     [SerializeField] private float CaughtLerpVelocity;
 
+    private WeaponMovement WeaponMovementAux;
     private Entity CatchedProp;
     private bool CatchedItem;
     private int CloseKeyTimesPressed;
 
     private const float BaseCooldown = 0.2f;
+    private const float ThrowTimeAnimation = 0.5f;
     private float CooldownTimer;
 
     public override void VirtualUpdate()
     {
         base.VirtualUpdate();
         UpdateCooldown();
+
+        if (WeaponMovementAux == null)
+            WeaponMovementAux = (WeaponMovement) MovementLogic;
+
+        AnimationLogicFromEntity();
 
         if (CatchedItem && CatchedProp?.MovementLogic != null)
         {
@@ -36,6 +43,20 @@ public class PhysGun : Weapon
     {
         base.InteractWithWeapon(_key);
         HandlePhysGunLogic(_key);
+    }
+
+    private void AnimationLogicFromEntity()
+    {
+        if (CreatureRb != null)
+            WeaponMovementAux.AnimationLogic(CreatureRb.velocity.magnitude);
+
+        if (StoredItem && WeaponMovementAux.CurrentAnimation.Equals(WeaponMovement.AnimationStates.FLOOR))
+            WeaponMovementAux.SwitchState(WeaponMovement.AnimationStates.IDLE);
+        if (!StoredItem && WeaponMovementAux.CurrentAnimation.Equals(WeaponMovement.AnimationStates.IDLE))
+            WeaponMovementAux.SwitchState(WeaponMovement.AnimationStates.FLOOR);
+
+        if (Input.GetKeyUp(CloseKey) && !CatchedItem)
+            WeaponMovementAux.SwitchState(WeaponMovement.AnimationStates.IDLE);
     }
 
     private void UpdateCooldown()
@@ -73,6 +94,9 @@ public class PhysGun : Weapon
         CatchedProp = _entity;
         ApplyCatchForce();
 
+        if (!CatchedItem)
+            WeaponMovementAux.SwitchState(WeaponMovement.AnimationStates.PHYSGUN_GET);
+
         if (IsWithinCatchDistance())
         {
             CatchedItem = true;
@@ -106,6 +130,8 @@ public class PhysGun : Weapon
     {
         if (CloseKeyTimesPressed >= 2)
         {
+            WeaponMovementAux.SwitchState(WeaponMovement.AnimationStates.IDLE);
+
             CooldownTimer = BaseCooldown;
             ReleaseCatchedProp();
             CloseKeyTimesPressed = 0;
@@ -152,13 +178,25 @@ public class PhysGun : Weapon
         CatchedProp.MovementLogic.EntityRb.velocity =
             RayCastPoint.TransformDirection(Vector3.forward) * ThrowForce;
 
-        ReleaseCatchedProp();
+        ReleaseCatchedProp(true);
     }
 
-    private void ReleaseCatchedProp()
+    private void ReleaseCatchedProp(bool _playThrowAnimation = false)
     {
+        if(_playThrowAnimation)
+            StartCoroutine(ReleaseAnimation());
+
         CatchedItem = false;
         CatchedProp = null;
+    }
+
+    private IEnumerator ReleaseAnimation()
+    {
+        WeaponMovementAux.SwitchState(WeaponMovement.AnimationStates.PGYSGUN_THROW);
+
+        yield return new WaitForSeconds(ThrowTimeAnimation);
+
+        WeaponMovementAux.SwitchState(WeaponMovement.AnimationStates.IDLE);
     }
 }
 

@@ -114,6 +114,7 @@ public class Inventory : MonoBehaviour
         Weapon weaponStored = (Weapon) _object;
         CreatureMovement movementCreature = (CreatureMovement)_creatureEntity.MovementLogic;
         weaponStored.RayCastPoint = movementCreature.RaycastReferencePoint;
+        weaponStored.CreatureRb = movementCreature.EntityRb;
     }
 
     private Entity GetAnyAvailableEntity(Entity.EntityType[] _availableTypes)

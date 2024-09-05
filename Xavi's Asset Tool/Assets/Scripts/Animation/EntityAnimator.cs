@@ -7,7 +7,7 @@ public class EntityAnimator : MonoBehaviour
     public List<AnimationList> Animations;
     public Animator AnimatorEntity;
 
-    [SerializeField] string CharacterSpeedBlendKey;
+    [SerializeField] string SpeedBlendKey;
 
     public void SwitchAnimationState(string _state)
     {
@@ -28,7 +28,7 @@ public class EntityAnimator : MonoBehaviour
 
     public void SwitchCharacterSpeedBlend(float _velocity)
     {
-        AnimatorEntity.SetFloat(CharacterSpeedBlendKey, _velocity);
+        AnimatorEntity.SetFloat(SpeedBlendKey, _velocity);
     }
 
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Weapon : Entity
 {
     public Transform RayCastPoint;
+    public Rigidbody CreatureRb;
 
     public override void VirtualUpdate()
     {

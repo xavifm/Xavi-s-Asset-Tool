@@ -39,7 +39,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    public virtual void AnimationLogic()
+    public virtual void AnimationLogic(float _blendValue = 0)
     {
 
     }

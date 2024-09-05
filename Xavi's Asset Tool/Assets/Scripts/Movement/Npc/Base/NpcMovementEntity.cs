@@ -13,7 +13,7 @@ public class NpcMovementEntity : CreatureMovement
 
     const float MARGIN_ALGORYTHM = 999999999;
 
-    public override void AnimationLogic()
+    public override void AnimationLogic(float _blendValue = 0)
     {
         if (Animations == null)
             InitializeList();
